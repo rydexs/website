@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RYDEXS - Your Journey, Our Priority</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #ffffff;
+      color: #050505;
+      line-height: 1.6;
+      /* clip (not hidden) — `hidden` makes body a scroll container and breaks position:sticky */
+      overflow-x: clip;
+    }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ==================== NAVBAR ==================== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(5, 5, 5, 0.08);
+      transition: padding 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      padding: 0.7rem 2rem;
+    }
+
+    .logo {
+      height: 72px;
+      width: auto;
+      display: flex;
+      align-items: center;
+      opacity: 1;
+    }
+
+    .logo img {
+      height: 100%;
+      width: auto;
+    }
+
+    /* Hero upper section - the brand travels along this axis */
+    .hero-upper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 2rem 0 2rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .brand-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      max-width: 100%;
+    }
+
+    /* Light that converges where the vehicle is heading. Sells the
+       vanishing point regardless of what the background photo does. */
+    .road-glow {
+      position: absolute;
+      left: 50%;
+      top: 34%;
+      width: 70vw;
+      max-width: 900px;
+      aspect-ratio: 3 / 2;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 214, 170, 0.5) 0%,
+        rgba(255, 160, 110, 0.18) 32%,
+        rgba(245, 179, 1, 0.06) 55%,
+        rgba(0, 0, 0, 0) 72%
+      );
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      will-change: opacity;
+    }
+
+    /* Vehicle - recedes toward the vanishing point */
+    .vehicle-element {
+      will-change: transform, opacity;
+      transform-origin: center center;
+      display: block;
+      backface-visibility: hidden;
+    }
+
+    .vehicle-image {
+      display: block;
+      width: 300px;
+      max-width: 62vw;
+      height: auto;
+      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.55));
+    }
+
+    /* Wordmark + tagline - fade out in place, never move sideways */
+    .wordmark-element {
+      will-change: opacity, transform;
+      transform-origin: center top;
+      display: block;
+      margin-top: 0.25rem;
+    }
+
+    .wordmark-image {
+      display: block;
+      /* 1248/716 keeps the original logo lockup proportions against the van */
+      width: 523px;
+      max-width: 108vw;
+      height: auto;
+    }
+
+    /* Hero lower section - main content, never touched by the animation */
+    .hero-lower {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem 4rem;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+    }
+
+    @media (max-width: 1024px) {
+      .vehicle-image { width: 240px; }
+      .wordmark-image { width: 418px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-lower {
+        flex: 1.1;
+        padding: 0 1.5rem 3rem;
+      }
+
+      .vehicle-image { width: 190px; }
+      .wordmark-image { width: 331px; }
+      .road-glow { top: 32%; width: 100vw; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-upper {
+        flex: 0.85;
+        padding: 68px 1rem 0 1rem;
+      }
+
+      .hero-lower {
+        flex: 1.15;
+        padding: 0 1rem 2.5rem;
+      }
+
+      .vehicle-image { width: 148px; }
+      .wordmark-image { width: 258px; }
+    }
+
+    /* Landscape tablets/phones: very little vertical room, so compress the stage */
+    @media (max-height: 620px) and (orientation: landscape) {
+      .hero-upper {
+        flex: 0.75;
+        padding-top: 70px;
+      }
+      .vehicle-image { width: 160px; }
+      .wordmark-image { width: 279px; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #F5B301;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    nav.scrolled .nav-links a {
+      color: #050505;
+    }
+
+    .nav-cta {
+      background: #F5B301;
+      color: #1a1a1a;
+      padding: 0.7rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .nav-cta:hover {
+      background: #d99a00;
+      transform: translateY(-2px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    /* Only shown inside the mobile dropdown menu */
+    .nav-menu-cta {
+      display: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: #050505;
+      transition: all 0.3s ease;
+    }
+
+    /* Switch to the hamburger menu earlier so the header CTA and the menu icon
+       never appear side by side on medium/small screens. */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: white;
+        padding: 2rem;
+        gap: 1rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      /* Header CTA moves into the dropdown menu */
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-menu-cta {
+        display: block;
+        background: #F5B301;
+        color: #1a1a1a !important;
+        text-align: center;
+        padding: 0.85rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 700;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* ==================== HERO ==================== */
+    /* Scroll region is taller than the viewport; the hero sticks to the top while
+       the extra height scrolls past. That travel distance is what drives the
+       brand animation, so the vehicle stays on screen while it plays. */
+    .hero-scroll-region {
+      position: relative;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Keeps the upper stage clear for the vehicle, darkens the lower
+         half so the heading holds contrast against any photo. */
+      background: linear-gradient(180deg,
+        rgba(5, 5, 5, 0.30) 0%,
+        rgba(5, 5, 5, 0.10) 28%,
+        rgba(5, 5, 5, 0.42) 60%,
+        rgba(5, 5, 5, 0.80) 100%);
+      z-index: 2;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #171b26;
+      /* Photo first; the gradient below it is a real sunset-above-cloud
+         fallback, so a failed image load still reads as intentional. */
+      background-image:
+        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2000&q=80&auto=format&fit=crop'),
+        linear-gradient(180deg,
+          #241a2e 0%,
+          #5c3242 30%,
+          #b9613f 48%,
+          #e0955f 57%,
+          #8e93a8 70%,
+          #4a5163 86%,
+          #23283a 100%);
+      background-position: center 58%, center;
+      background-size: cover, cover;
+      background-repeat: no-repeat, no-repeat;
+      animation: heroZoom 8s ease-out forwards;
+      z-index: 1;
+    }
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.1);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      max-width: 800px;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        margin-top: 1.5rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 .hl {
+      display: block;
+    }
+
+    .hero-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroCarry 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    @keyframes heroCarry {
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal { opacity: 1; transform: none; animation: none; }
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: #F5B301;
+      color: #1a1a1a;
+    }
+
+    .btn-primary:hover {
+      background: #d99a00;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(245, 179, 1, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #050505;
+      transform: translateY(-3px);
+    }
+
+    /* ==================== TRIP PLANNER CARD ==================== */
+    .planner-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding: 4rem 2rem 5rem;
+      animation: planeCardIn 1s ease-out 0.7s forwards;
+      opacity: 0;
+    }
+
+    @keyframes planeCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .planner-card {
+      background: white;
+      border-radius: 8px;
+      padding: 2.5rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    .planner-card:hover {
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+    }
+
+    .planner-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .planner-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      align-items: end;
+    }
+
+    .planner-form > div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .planner-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .planner-form input,
+    .planner-form select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .planner-form input:focus,
+    .planner-form select:focus {
+      outline: none;
+      border-color: #F5B301;
+      box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.1);
+    }
+
+    .planner-form input::placeholder {
+      color: #999;
+    }
+
+    .planner-form > div:nth-child(1),
+    .planner-form > div:nth-child(2),
+    .planner-form > div:nth-child(5) {
+      grid-column: 1 / -1;
+    }
+
+    .planner-cta {
+      grid-column: 1 / -1;
+      padding: 1rem;
+      background: #F5B301;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .planner-cta:hover {
+      background: #d99a00;
+      transform: translateY(-2px);
+    }
+
+    /* ==================== SECTION SPACING ==================== */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    section.dark-bg {
+      background: #1a1a1a;
+      color: white;
+    }
+
+    section.light-bg {
+      background: #f8f8f8;
+    }
+
+    .section-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #050505;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 600px;
+      opacity: 0.85;
+      margin-bottom: 3rem;
+    }
+
+    /* ==================== POPULAR DESTINATIONS ==================== */
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .destination-card {
+      position: relative;
+      height: 400px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 0.5s ease;
+    }
+
+    .destination-card:hover {
+      transform: scale(1.02);
+    }
+
+    .destination-card-img {
+      position: absolute;
+      inset: 0;
+      background: center/cover no-repeat;
+      transition: transform 0.5s ease;
+    }
+
+    .destination-card:hover .destination-card-img {
+      transform: scale(1.08);
+    }
+
+    .destination-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+      z-index: 2;
+      transition: all 0.4s ease;
+    }
+
+    .destination-card:hover::before {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .destination-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      z-index: 3;
+      color: white;
+    }
+
+    .destination-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .destination-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .destination-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #F5B301;
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .destination-link:hover {
+      gap: 1rem;
+    }
+
+    /* ==================== OUR FLEET & RATES ==================== */
+    .fleet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .fleet-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .fleet-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .fleet-card-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #ececec;
+      transition: transform 0.5s ease;
+    }
+
+    .fleet-card:hover .fleet-card-img {
+      transform: scale(1.06);
+    }
+
+    /* Crossfading photo slideshow inside a fleet card image area */
+    .fleet-card-slider {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background-color: #ececec;
+    }
+
+    .fleet-card-slider .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease, transform 0.5s ease;
+    }
+
+    .fleet-card-slider .slide.active {
+      opacity: 1;
+    }
+
+    .fleet-card:hover .fleet-card-slider .slide.active {
+      transform: scale(1.06);
+    }
+
+    .fleet-content {
+      padding: 1.75rem 2rem 2rem;
+    }
+
+    .fleet-tag {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #F5B301;
+      margin-bottom: 0.75rem;
+    }
+
+    .fleet-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .fleet-desc {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .fleet-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .fleet-specs span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .fleet-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .fleet-tab {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      border: 2px solid #e2e2e2;
+      border-radius: 999px;
+      background: #fff;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .fleet-tab:hover {
+      border-color: #F5B301;
+      color: #1a1a1a;
+    }
+
+    .fleet-tab.active {
+      background: #1a1a1a;
+      border-color: #1a1a1a;
+      color: #fff;
+    }
+
+    .fleet-panel {
+      display: none;
+    }
+
+    .fleet-panel.active {
+      display: block;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .rate-table-wrap {
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      background: #fff;
+    }
+
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.9rem;
+    }
+
+    .rate-table thead th {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-align: left;
+      padding: 1rem 1.1rem;
+      white-space: nowrap;
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+    }
+
+    .rate-table thead th:not(:first-child) {
+      text-align: center;
+    }
+
+    .rate-table tbody td {
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid #eee;
+      color: #333;
+    }
+
+    .rate-table tbody td:not(:first-child) {
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .rate-table tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    .rate-table tbody tr:hover {
+      background: #fff7e6;
+    }
+
+    .rate-table .veh-name {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .rate-table .veh-seat {
+      display: block;
+      font-size: 0.78rem;
+      color: #888;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .rate-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #666;
+    }
+
+    .rate-note strong {
+      color: #1a1a1a;
+    }
+
+    /* Hint that the rate table scrolls sideways on narrow screens */
+    .rate-scroll-hint {
+      display: none;
+      font-size: 0.8rem;
+      color: #999;
+      margin: 0 0 0.6rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .fleet-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 2.5rem;
+      }
+
+      .fleet-card-img,
+      .fleet-card-slider {
+        height: 200px;
+      }
+
+      /* Keep the tabs on one line, scrollable, instead of wrapping messily */
+      .fleet-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.4rem;
+        margin-top: 2rem;
+      }
+
+      .fleet-tab {
+        flex: 0 0 auto;
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+      }
+
+      .rate-scroll-hint {
+        display: block;
+      }
+
+      .rate-table {
+        min-width: 560px;
+        font-size: 0.82rem;
+      }
+
+      .rate-table thead th {
+        padding: 0.75rem 0.7rem;
+        font-size: 0.72rem;
+      }
+
+      .rate-table tbody td {
+        padding: 0.7rem 0.7rem;
+      }
+
+      .rate-table .veh-seat {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fleet-content {
+        padding: 1.4rem 1.4rem 1.6rem;
+      }
+
+      .fleet-name {
+        font-size: 1.3rem;
+      }
+
+      .fleet-specs {
+        gap: 0.9rem;
+        font-size: 0.8rem;
+      }
+
+      .rate-table {
+        min-width: 500px;
+      }
+    }
+
+    /* ==================== WHY RYDEXS ==================== */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .benefit {
+      text-align: left;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .benefit:nth-child(1) { animation-delay: 0s; }
+    .benefit:nth-child(2) { animation-delay: 0.1s; }
+    .benefit:nth-child(3) { animation-delay: 0.2s; }
+    .benefit:nth-child(4) { animation-delay: 0.3s; }
+    .benefit:nth-child(5) { animation-delay: 0.4s; }
+    .benefit:nth-child(6) { animation-delay: 0.5s; }
+
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      background: #F5B301;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .benefit:hover .benefit-icon {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(245, 179, 1, 0.3);
+    }
+
+    .benefit h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .benefit p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.8;
+    }
+
+    /* ==================== FEATURED JOURNEYS ==================== */
+    .journeys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .journey-card {
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .journey-card:hover {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+    }
+
+    .journey-img {
+      height: 250px;
+      background: center/cover no-repeat;
+      transition: transform 0.5s ease;
+    }
+
+    .journey-card:hover .journey-img {
+      transform: scale(1.05);
+    }
+
+    .journey-body {
+      padding: 2rem;
+    }
+
+    .journey-meta {
+      font-size: 0.85rem;
+      color: #F5B301;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .journey-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .journey-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .journey-price {
+      color: #1a9e4b;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .journey-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #050505;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .journey-link:hover {
+      color: #F5B301;
+      gap: 1rem;
+    }
+
+    /* ==================== TRAVEL EXPERIENCES ==================== */
+    .experiences-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .experience-card {
+      position: relative;
+      height: 300px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      background: center/cover no-repeat;
+    }
+
+    .experience-card:nth-child(1),
+    .experience-card:nth-child(2) {
+      grid-column: span 3;
+    }
+
+    .experience-card:nth-child(3),
+    .experience-card:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .experience-card:nth-child(5),
+    .experience-card:nth-child(6) {
+      grid-column: span 3;
+    }
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+      transition: all 0.4s ease;
+      z-index: 2;
+    }
+
+    .experience-card:hover::before {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .experience-label {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      z-index: 3;
+      transition: transform 0.3s ease;
+    }
+
+    .experience-card:hover .experience-label {
+      transform: translateY(-8px);
+    }
+
+    /* ==================== CORPORATE TRAVEL ==================== */
+    .corporate-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    .corporate-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .corporate-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #050505;
+    }
+
+    .corporate-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.8;
+    }
+
+    /* ==================== CUSTOM TRIP CTA ==================== */
+    .custom-cta {
+      position: relative;
+      text-align: center;
+      padding: 6rem 2rem;
+      color: white;
+      overflow: hidden;
+    }
+
+    .custom-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=1200&fit=crop') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .custom-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.6);
+      z-index: 2;
+    }
+
+    .custom-cta-content {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .custom-cta h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+
+    .custom-cta p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    /* ==================== TESTIMONIALS ==================== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .testimonial-rating {
+      color: #F5B301;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 0.3rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ==================== GALLERY ==================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      background: center/cover no-repeat;
+    }
+
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(5) {
+      aspect-ratio: 2;
+    }
+
+    .gallery-item:nth-child(3) {
+      aspect-ratio: 0.8;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .gallery-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-icon {
+      opacity: 1;
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      background:
+        linear-gradient(rgba(5, 5, 5, 0.86), rgba(5, 5, 5, 0.94)),
+        url('vidhana soudha.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 3rem;
+    }
+
+    .footer-logo {
+      height: 90px;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    .footer-section h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: #F5B301;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: rgba(245, 179, 1, 0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #F5B301;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: #F5B301;
+      color: #1a1a1a;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: white;
+        padding: 2rem;
+        gap: 1rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      /* Free up header space on small screens; the CTA lives in the menu instead */
+      .nav-cta {
+        display: none;
+      }
+
+      .logo {
+        height: 48px;
+      }
+
+      .nav-menu-cta {
+        display: block;
+        background: #F5B301;
+        color: #1a1a1a !important;
+        text-align: center;
+        padding: 0.85rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 700;
+        margin-top: 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .planner-form {
+        grid-template-columns: 1fr;
+      }
+
+      .planner-form > div:nth-child(2),
+      .planner-form > div:nth-child(5) {
+        grid-column: 1;
+      }
+
+      .destinations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .destination-card {
+        height: 300px;
+      }
+
+      .experiences-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        grid-column: span 1 !important;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item:nth-child(2),
+      .gallery-item:nth-child(5) {
+        aspect-ratio: 1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .footer-social {
+        order: -1;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .section-heading {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 0.8rem;
+      }
+
+      .logo {
+        height: 35px;
+      }
+
+      .hero-buttons {
+        gap: 0.8rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .planner-card {
+        padding: 1.5rem;
+      }
+
+      .planner-card h3 {
+        font-size: 1.4rem;
+      }
+
+      .planner-form {
+        gap: 1rem;
+      }
+
+      .benefit-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ==================== FLOATING ACTION BUTTONS ==================== */
+    .fab-stack {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .fab {
+      display: inline-flex;
+      align-items: center;
+      height: 56px;
+      border-radius: 28px;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .fab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .fab-icon {
+      width: 56px;
+      height: 56px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .fab-label {
+      max-width: 0;
+      overflow: hidden;
+      opacity: 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: max-width 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    }
+
+    .fab:hover .fab-label,
+    .fab:focus-visible .fab-label {
+      max-width: 200px;
+      opacity: 1;
+      padding-right: 1.4rem;
+    }
+
+    .fab-assistant {
+      background: #F5B301;
+      color: #1a1a1a;
+    }
+
+    .fab-whatsapp {
+      background: #25D366;
+      color: #ffffff;
+    }
+
+    .fab-top {
+      background: #1a1a1a;
+      color: #ffffff;
+      width: 56px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .fab-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .fab-stack {
+        right: 1rem;
+        bottom: 1rem;
+        gap: 0.75rem;
+      }
+      .fab { height: 50px; border-radius: 25px; }
+      .fab-icon { width: 50px; height: 50px; }
+    }
+
+    /* ==================== ASSISTANT MODAL ==================== */
+    .assist-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(15, 15, 15, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .assist-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .assist-modal {
+      position: relative;
+      background: #ffffff;
+      color: #1a1a1a;
+      border-radius: 20px;
+      max-width: 860px;
+      width: 100%;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+      padding: 2.5rem;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      transform: translateY(18px) scale(0.98);
+      transition: transform 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .assist-overlay.open .assist-modal {
+      transform: none;
+    }
+
+    .assist-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f2f2f2;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #333;
+      transition: background 0.25s ease;
+    }
+
+    .assist-close:hover {
+      background: #e4e4e4;
+    }
+
+    .assist-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding-right: 2.5rem;
+    }
+
+    .assist-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.25;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .assist-title span {
+      display: block;
+    }
+
+    .assist-agent {
+      background: #FFF8E6;
+      border-radius: 12px;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .assist-agent-icon {
+      color: #F5B301;
+      display: grid;
+      place-items: center;
+    }
+
+    .assist-agent small {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .assist-agent strong {
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .assist-panel {
+      margin-top: 1.75rem;
+      background: #f7f7f7;
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .assist-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .assist-benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 500;
+    }
+
+    .assist-benefit svg {
+      color: #F5B301;
+      flex: 0 0 auto;
+    }
+
+    .assist-form {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .assist-input-wrap {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .assist-input-wrap:focus-within {
+      border-color: #F5B301;
+      box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.15);
+    }
+
+    .assist-cc {
+      padding: 0 1rem;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #e2e2e2;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .assist-input-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      min-width: 0;
+    }
+
+    .assist-submit {
+      background: #1a9e4b;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 2rem;
+      height: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s ease;
+    }
+
+    .assist-submit:hover {
+      background: #16813d;
+    }
+
+    .assist-confirm {
+      margin-top: 1rem;
+      color: #1a9e4b;
+      font-weight: 600;
+      display: none;
+    }
+
+    .assist-confirm.show {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .assist-modal { padding: 1.75rem 1.25rem; }
+      .assist-header { padding-right: 2rem; }
+      .assist-agent { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="logo">
+      <img src="a_clean_high_contrast_modern_vector_logo_style_g.png" alt="RYDEXS">
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#packages">Packages</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#home" class="nav-menu-cta">Plan Your Trip</a>
+    </div>
+    <button class="nav-cta">Plan Your Trip</button>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-scroll-region" id="heroScrollRegion">
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+
+
+    <!-- Hero lower section: Main content -->
+    <div class="hero-lower">
+      <div class="hero-content">
+        <h1>
+          <span class="hl hero-reveal" style="animation-delay: 0.1s;">YOUR NEXT</span>
+          <span class="hl hero-reveal" style="animation-delay: 0.25s;">JOURNEY</span>
+          <span class="hl hero-reveal" style="animation-delay: 0.4s;">STARTS HERE.</span>
+        </h1>
+        <p class="hero-reveal" style="animation-delay: 0.55s;">Discover unforgettable journeys from Bengaluru to destinations worth remembering.</p>
+        <div class="hero-buttons hero-reveal" style="animation-delay: 0.7s;">
+          <button class="btn btn-primary">EXPLORE DESTINATIONS</button>
+          <button class="btn btn-secondary">PLAN YOUR TRIP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- POPULAR DESTINATIONS -->
+  <section id="destinations" class="light-bg">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-label">EXPLORE FROM BENGALURU</div>
+      <h2 class="section-heading">Places Worth Going.</h2>
+      <p class="section-subtitle">From quick weekend escapes to unforgettable long journeys, discover destinations made for your next adventure.</p>
+
+      <div class="destinations-grid">
+        <div class="destination-card" style="background-image: url('coorg.png');">
+          <div class="destination-content">
+            <div class="destination-name">Coorg</div>
+            <p class="destination-desc">Misty mountains, coffee plantations, and waterfalls</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+
+        <div class="destination-card" style="background-image: url('chikkamagaluru.webp');">
+          <div class="destination-content">
+            <div class="destination-name">Chikmagalur</div>
+            <p class="destination-desc">Coffee estates, adventure trails, and serene landscapes</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+
+        <div class="destination-card" style="background-image: url('gokarna.jpg');">
+          <div class="destination-content">
+            <div class="destination-name">Gokarna</div>
+            <p class="destination-desc">Golden beaches, vibrant culture, and perfect sunsets</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+
+        <div class="destination-card" style="background-image: url('goa.jpg');">
+          <div class="destination-content">
+            <div class="destination-name">Goa</div>
+            <p class="destination-desc">Tropical paradise with beaches and Portuguese heritage</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+
+        <div class="destination-card" style="background-image: url('kerala.png');">
+          <div class="destination-content">
+            <div class="destination-name">Kerala</div>
+            <p class="destination-desc">Backwaters, houseboats, and spice plantations</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+
+        <div class="destination-card" style="background-image: url('mysore.jpg');">
+          <div class="destination-content">
+            <div class="destination-name">Mysore</div>
+            <p class="destination-desc">Royal palaces, lush gardens, and historic markets</p>
+            <a href="#" class="destination-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR FLEET & RATES -->
+  <section id="fleet" class="light-bg">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-label">RIDE IN COMFORT</div>
+      <h2 class="section-heading">Our Fleet & Rates.</h2>
+      <p class="section-subtitle">From sedans to luxury coaches, choose the ride that fits your journey. All rates are based on an 8 hours / 80 kms local package, with transparent add-ons for extra time, distance, and outstation trips.</p>
+
+      <div class="fleet-grid">
+        <div class="fleet-card">
+          <div class="fleet-card-img" style="background-image: url('sedan.jpg');"></div>
+          <div class="fleet-content">
+            <span class="fleet-tag">Sedan</span>
+            <div class="fleet-name">Comfort Sedans</div>
+            <p class="fleet-desc">Smooth, fuel-efficient rides ideal for couples and small families exploring nearby getaways.</p>
+            <div class="fleet-specs">
+              <span>4 Seats</span>
+              <span>2 Bags</span>
+              <span>AC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fleet-card">
+          <div class="fleet-card-slider" data-slider>
+            <div class="slide active" style="background-image: url('urbania-2.jpg');"></div>
+            <div class="slide" style="background-image: url('urbania-1.jpg');"></div>
+          </div>
+          <div class="fleet-content">
+            <span class="fleet-tag">SUV</span>
+            <div class="fleet-name">Premium SUVs</div>
+            <p class="fleet-desc">Spacious and rugged, built for hill stations, long drives, and adventures off the beaten path.</p>
+            <div class="fleet-specs">
+              <span>6 Seats</span>
+              <span>4 Bags</span>
+              <span>AC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fleet-card">
+          <div class="fleet-card-slider" data-slider>
+            <div class="slide active" style="background-image: url('tempo-1.jpg');"></div>
+            <div class="slide" style="background-image: url('tempo-2.jpg');"></div>
+          </div>
+          <div class="fleet-content">
+            <span class="fleet-tag">Tempo Traveller</span>
+            <div class="fleet-name">Group Travellers</div>
+            <p class="fleet-desc">Roomy seating for larger groups and corporate outings, so everyone travels together in comfort.</p>
+            <div class="fleet-specs">
+              <span>12 Seats</span>
+              <span>8 Bags</span>
+              <span>AC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="rate-scroll-hint">← Swipe the table sideways to see all rates →</p>
+      <div class="fleet-tabs">
+        <button class="fleet-tab active" data-panel="cars">Cars</button>
+        <button class="fleet-tab" data-panel="vans">Tempo &amp; Vans</button>
+        <button class="fleet-tab" data-panel="buses">Buses</button>
+      </div>
+
+      <!-- CARS -->
+      <div class="fleet-panel active" id="panel-cars">
+        <div class="rate-table-wrap">
+          <table class="rate-table">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>8 Hrs / 80 Kms</th>
+                <th>Extra Hr</th>
+                <th>Extra Km</th>
+                <th>Outstation / Km</th>
+                <th>Driver Bata</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="veh-name">Sedan</span><span class="veh-seat">4+1 Seater</span></td><td>₹1,800</td><td>₹120</td><td>₹12</td><td>₹12</td><td>₹300</td></tr>
+              <tr><td><span class="veh-name">Maruti Suzuki Ertiga</span><span class="veh-seat">6+1 Seater</span></td><td>₹2,500</td><td>₹200</td><td>₹15</td><td>₹15</td><td>₹300</td></tr>
+              <tr><td><span class="veh-name">Honda City / Ciaz</span><span class="veh-seat">4+1 Seater</span></td><td>₹2,400</td><td>₹180</td><td>₹14</td><td>₹14</td><td>₹300</td></tr>
+              <tr><td><span class="veh-name">Toyota Corolla Altis</span><span class="veh-seat">4+1 Seater</span></td><td>₹2,600</td><td>₹250</td><td>₹17</td><td>₹17</td><td>₹300</td></tr>
+              <tr><td><span class="veh-name">Toyota Innova Crysta</span><span class="veh-seat">6+1 / 7+1 Seater</span></td><td>₹3,100</td><td>₹250</td><td>₹18</td><td>₹18</td><td>₹300</td></tr>
+              <tr><td><span class="veh-name">Toyota Innova Hycross</span><span class="veh-seat">6+1 / 7+1 Seater</span></td><td>₹3,400</td><td>₹350</td><td>₹23</td><td>₹23</td><td>₹400</td></tr>
+              <tr><td><span class="veh-name">Toyota Fortuner</span><span class="veh-seat">7+1 Seater</span></td><td>₹5,500</td><td>₹500</td><td>₹50</td><td>₹50</td><td>₹400</td></tr>
+              <tr><td><span class="veh-name">Kia Carnival (Old)</span><span class="veh-seat">7+1 Seater</span></td><td>₹5,500</td><td>₹500</td><td>₹50</td><td>₹50</td><td>₹500</td></tr>
+              <tr><td><span class="veh-name">Kia Carnival (New)</span><span class="veh-seat">7+1 Seater</span></td><td>₹7,500</td><td>₹750</td><td>₹75</td><td>₹75</td><td>₹500</td></tr>
+              <tr><td><span class="veh-name">Mercedes-Benz E-Class</span><span class="veh-seat">4+1 Seater</span></td><td>₹9,500</td><td>₹950</td><td>₹95</td><td>₹95</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">Mercedes-Benz S-Class</span><span class="veh-seat">4+1 Seater</span></td><td>₹18,000</td><td>₹1,800</td><td>₹180</td><td>₹180</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">Toyota Vellfire</span><span class="veh-seat">6+1 Seater</span></td><td>₹21,000</td><td>₹2,100</td><td>₹210</td><td>₹210</td><td>₹1,000</td></tr>
+              <tr><td><span class="veh-name">Toyota Commuter</span><span class="veh-seat">13+1 Seater</span></td><td>₹12,000</td><td>₹1,200</td><td>₹120</td><td>₹120</td><td>₹1,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VANS -->
+      <div class="fleet-panel" id="panel-vans">
+        <div class="rate-table-wrap">
+          <table class="rate-table">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>8 Hrs / 80 Kms</th>
+                <th>Extra Hr</th>
+                <th>Extra Km</th>
+                <th>Outstation / Km</th>
+                <th>Driver Bata</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="veh-name">Tempo Traveller 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹5,000</td><td>₹500</td><td>₹27</td><td>₹28</td><td>₹600</td></tr>
+              <tr><td><span class="veh-name">Tempo Traveller Non-AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹3,800</td><td>₹450</td><td>₹17</td><td>₹18</td><td>₹500</td></tr>
+              <tr><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹4,500</td><td>₹500</td><td>₹20</td><td>₹21</td><td>₹500</td></tr>
+              <tr><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,000</td><td>₹750</td><td>₹28</td><td>₹30</td><td>₹600</td></tr>
+              <tr><td><span class="veh-name">Tempo Traveller AC 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹6,000</td><td>₹500</td><td>₹28</td><td>₹28</td><td>₹600</td></tr>
+              <tr><td><span class="veh-name">Force Urbania 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹9,500</td><td>₹400</td><td>₹42</td><td>₹42</td><td>₹700</td></tr>
+              <tr><td><span class="veh-name">Force Urbania 10 Seater</span><span class="veh-seat">10+1 · 2+1 Layout</span></td><td>₹6,500</td><td>₹400</td><td>₹34</td><td>₹32</td><td>₹700</td></tr>
+              <tr><td><span class="veh-name">Force Urbania 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,500</td><td>₹400</td><td>₹40</td><td>₹40</td><td>₹700</td></tr>
+              <tr><td><span class="veh-name">Force Urbania 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹8,000</td><td>₹400</td><td>₹32</td><td>₹35</td><td>₹700</td></tr>
+              <tr><td><span class="veh-name">16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>—</td><td>—</td><td>₹38</td><td>₹38</td><td>—</td></tr>
+              <tr><td><span class="veh-name">12 Seater</span><span class="veh-seat">12+1 · 1+1 Configuration</span></td><td>—</td><td>—</td><td>₹45</td><td>₹45</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BUSES -->
+      <div class="fleet-panel" id="panel-buses">
+        <div class="rate-table-wrap">
+          <table class="rate-table">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>8 Hrs / 80 Kms</th>
+                <th>Extra Hr</th>
+                <th>Extra Km</th>
+                <th>Outstation / Km</th>
+                <th>Driver Bata</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="veh-name">21 Seater Bus AC</span><span class="veh-seat">21+2 · 2+1 Layout</span></td><td>₹8,000</td><td>₹500</td><td>₹40</td><td>₹40</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">21 Seater Bus AC / Non-AC</span><span class="veh-seat">21+2 · 2+2 Layout</span></td><td>₹6,500</td><td>₹450</td><td>₹35</td><td>₹35</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">25 Seater Bus AC</span><span class="veh-seat">25+2 · 2+1 Layout</span></td><td>₹9,000</td><td>₹600</td><td>₹45</td><td>₹45</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">25 Seater Bus AC / Non-AC</span><span class="veh-seat">25+2 · 2+2 Layout</span></td><td>₹8,000</td><td>₹500</td><td>₹40</td><td>₹40</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">33 Seater Bus AC</span><span class="veh-seat">33+2 · 2+1 Layout</span></td><td>₹10,000</td><td>₹700</td><td>₹50</td><td>₹50</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">33 Seater Bus AC / Non-AC</span><span class="veh-seat">33+2 · 2+2 Layout</span></td><td>₹9,000</td><td>₹600</td><td>₹45</td><td>₹50</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">40 Seater Bus AC</span><span class="veh-seat">40+2 · 2+2 Layout</span></td><td>₹12,000</td><td>₹800</td><td>₹55</td><td>₹55</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">40 Seater Bus Non-AC</span><span class="veh-seat">40+2 · 2+2 Layout</span></td><td>₹10,000</td><td>₹700</td><td>₹50</td><td>₹50</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">45 Seater Bus AC</span><span class="veh-seat">45+2 · 2+2 Layout</span></td><td>₹14,000</td><td>₹900</td><td>₹58</td><td>₹58</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">45 Seater Bus Non-AC</span><span class="veh-seat">45+2 · 2+2 Layout</span></td><td>₹12,000</td><td>₹800</td><td>₹55</td><td>₹55</td><td>₹800</td></tr>
+              <tr><td><span class="veh-name">50 Seater Bus AC</span><span class="veh-seat">50+2 · 3+2 Layout</span></td><td>₹13,000</td><td>₹1,000</td><td>₹55</td><td>₹55</td><td>₹1,000</td></tr>
+              <tr><td><span class="veh-name">50 Seater Bus Non-AC</span><span class="veh-seat">50+2 · 3+2 Layout</span></td><td>₹12,000</td><td>₹1,000</td><td>₹52</td><td>₹52</td><td>₹1,000</td></tr>
+              <tr><td><span class="veh-name">Volvo Single Axle</span><span class="veh-seat">45+2 · 2+2 Layout</span></td><td>₹15,000</td><td>₹1,500</td><td>₹68</td><td>₹68</td><td>₹1,500</td></tr>
+              <tr><td><span class="veh-name">Volvo Multi-Axle</span><span class="veh-seat">50+2 · 2+2 Layout</span></td><td>₹20,000</td><td>₹1,800</td><td>₹78</td><td>₹78</td><td>₹1,800</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="rate-note">
+        <strong>Note:</strong> All rates are indicative and based on an 8 hours / 80 kms local package. <strong>Extra Hr</strong> and <strong>Extra Km</strong> charges apply beyond the package limit. <strong>Outstation</strong> rates are charged per kilometre, and <strong>Driver Bata</strong> (daily allowance) is additional. Toll, parking, state permits, and GST are charged as applicable. Contact us for a customised quote on your route.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHY RYDEXS -->
+  <section id="about">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 class="section-heading">WHY RYDEXS?</h2>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4>Comfortable Journeys</h4>
+          <p>Premium vehicles with all the comfort you need for long drives</p>
+        </div>
+        <div class="benefit">
+          <h4>Trusted Travel</h4>
+          <p>Years of reliable service and countless satisfied travelers</p>
+        </div>
+        <div class="benefit">
+          <h4>Transparent Pricing</h4>
+          <p>No hidden charges, just honest pricing for great value</p>
+        </div>
+        <div class="benefit">
+          <h4>Experienced Drivers</h4>
+          <p>Professional drivers who know every route like the back of their hand</p>
+        </div>
+        <div class="benefit">
+          <h4>Flexible Trips</h4>
+          <p>Customize your journey exactly how you want it</p>
+        </div>
+        <div class="benefit">
+          <h4>Dedicated Support</h4>
+          <p>24/7 support team ready to help with anything</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIP PLANNER CARD -->
+  <div class="planner-container" id="planner">
+    <div class="planner-card">
+      <h3>Plan Your Journey</h3>
+      <form class="planner-form">
+        <div>
+          <label>From</label>
+          <input type="text" value="Bengaluru" readonly>
+        </div>
+        <div>
+          <label>Destination</label>
+          <select>
+            <option>Where do you want to go?</option>
+            <option>Coorg</option>
+            <option>Chikmagalur</option>
+            <option>Gokarna</option>
+            <option>Goa</option>
+            <option>Kerala</option>
+            <option>Mysore</option>
+          </select>
+        </div>
+        <div>
+          <label>Travel Date</label>
+          <input type="date">
+        </div>
+        <div>
+          <label>Travellers</label>
+          <input type="number" placeholder="Number of people" min="1">
+        </div>
+        <div>
+          <label>Trip Type</label>
+          <select>
+            <option>Select trip type</option>
+            <option>Weekend Escape</option>
+            <option>Adventure Trip</option>
+            <option>Beach Getaway</option>
+            <option>Hill Station</option>
+            <option>Group Holiday</option>
+            <option>Corporate Travel</option>
+          </select>
+        </div>
+        <button type="submit" class="planner-cta">GET A QUOTE</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FEATURED JOURNEYS -->
+  <section id="packages" class="light-bg">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-label">CURATED JOURNEYS</div>
+      <h2 class="section-heading">Trips Worth Remembering.</h2>
+
+      <div class="journeys-grid">
+        <div class="journey-card">
+          <div class="journey-img" style="background-image: url('coorg.png');"></div>
+          <div class="journey-body">
+            <div class="journey-meta">2 NIGHTS / 3 DAYS</div>
+            <h4 class="journey-title">Coorg Escape</h4>
+            <p class="journey-desc">Experience the lush greenery of coffee plantations and refreshing mountain air</p>
+            <p class="journey-price">Starting from ₹XX,XXX</p>
+            <a href="#" class="journey-link">View Trip →</a>
+          </div>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-img" style="background-image: url('gokarna.jpg');"></div>
+          <div class="journey-body">
+            <div class="journey-meta">2 NIGHTS / 3 DAYS</div>
+            <h4 class="journey-title">Gokarna Getaway</h4>
+            <p class="journey-desc">Relax on pristine beaches and explore hidden coves of coastal Karnataka</p>
+            <p class="journey-price">Starting from ₹XX,XXX</p>
+            <a href="#" class="journey-link">View Trip →</a>
+          </div>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-img" style="background-image: url('goa.jpg');"></div>
+          <div class="journey-body">
+            <div class="journey-meta">3 NIGHTS / 4 DAYS</div>
+            <h4 class="journey-title">Goa Weekend</h4>
+            <p class="journey-desc">Sun, sand, and sea with the vibrant culture of beautiful Goa</p>
+            <p class="journey-price">Starting from ₹XX,XXX</p>
+            <a href="#" class="journey-link">View Trip →</a>
+          </div>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-img" style="background-image: url('kerala.png');"></div>
+          <div class="journey-body">
+            <div class="journey-meta">4 NIGHTS / 5 DAYS</div>
+            <h4 class="journey-title">Kerala Explorer</h4>
+            <p class="journey-desc">Cruise through backwaters and discover the magic of God's own country</p>
+            <p class="journey-price">Starting from ₹XX,XXX</p>
+            <a href="#" class="journey-link">View Trip →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL EXPERIENCES -->
+  <section id="experiences">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <h2 class="section-heading">Travel Experiences</h2>
+
+      <div class="experiences-grid">
+        <div class="experience-card" style="background-image: url('Weekend Escapes.cms');">
+          <div class="experience-label">Weekend Escapes</div>
+        </div>
+
+        <div class="experience-card" style="background-image: url('Adventure Trips.webp');">
+          <div class="experience-label">Adventure Trips</div>
+        </div>
+
+        <div class="experience-card" style="background-image: url('Beach Getaways.webp');">
+          <div class="experience-label">Beach Getaways</div>
+        </div>
+
+        <div class="experience-card" style="background-image: url('Hill Station Trips.jpg');">
+          <div class="experience-label">Hill Station Trips</div>
+        </div>
+
+        <div class="experience-card" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1000&h=600&fit=crop');">
+          <div class="experience-label">Group Holidays</div>
+        </div>
+
+        <div class="experience-card" style="background-image: url('https://images.unsplash.com/photo-1557821552-17105176677c?w=1000&h=600&fit=crop');">
+          <div class="experience-label">Corporate Travel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORPORATE TRAVEL FOR EMPLOYEES -->
+  <section id="corporate">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-label">FOR TEAMS & ORGANIZATIONS</div>
+      <h2 class="section-heading">Corporate Travel That Strengthens Teams.</h2>
+      <p class="section-subtitle">From team building getaways to employee wellness programs, we create memorable journeys that boost morale and strengthen bonds.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div class="corporate-card">
+          <h4>Team Building Journeys</h4>
+          <p>Curated multi-day trips designed to enhance teamwork, communication, and company culture through shared experiences.</p>
+        </div>
+
+        <div class="corporate-card">
+          <h4>Corporate Rates & Packages</h4>
+          <p>Exclusive group discounts, flexible payment terms, and customized packages tailored to your organization's budget and preferences.</p>
+        </div>
+
+        <div class="corporate-card">
+          <h4>Dedicated Account Manager</h4>
+          <p>A single point of contact who understands your company's needs and handles all logistics, planning, and support.</p>
+        </div>
+
+        <div class="corporate-card">
+          <h4>Employee Wellness Programs</h4>
+          <p>Wellness retreats designed to rejuvenate, refresh, and reward your team with experiences they'll cherish.</p>
+        </div>
+
+        <div class="corporate-card">
+          <h4>Flexible Itineraries</h4>
+          <p>Complete flexibility to adjust dates, destinations, and activities based on your organization's schedule and preferences.</p>
+        </div>
+
+        <div class="corporate-card">
+          <h4>24/7 Support & Safety</h4>
+          <p>Comprehensive travel insurance, emergency support, and professional drivers ensuring your team's safety and comfort always.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 4rem; padding: 2.5rem; background: #f8f8f8; border-radius: 8px; text-align: center;">
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Ready to Plan Your Team's Next Adventure?</h3>
+        <p style="opacity: 0.8; margin-bottom: 2rem; font-size: 1.05rem;">Get in touch with our corporate travel specialists for a personalized proposal.</p>
+        <button class="btn btn-primary">PLAN CORPORATE TRAVEL</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM TRIP CTA -->
+  <section class="custom-cta dark-bg">
+    <div class="custom-cta-content">
+      <h2>YOUR TRIP.<br>YOUR WAY.</h2>
+      <p>Have somewhere in mind? Tell us where you want to go and we'll help create the journey around you.</p>
+      <button class="btn btn-primary">PLAN A CUSTOM TRIP</button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="light-bg">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 class="section-heading">What Our Travelers Say</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"RYDEXS made our Coorg trip absolutely unforgettable. The comfortable journey, knowledgeable driver, and attention to detail made all the difference. Highly recommended!"</p>
+          <p class="testimonial-author">Priya Sharma</p>
+          <p class="testimonial-role">Bangalore</p>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"We booked RYDEXS for our family trip to Goa and it was worth every penny. The vehicle was pristine, and the entire experience felt premium. Will definitely book again!"</p>
+          <p class="testimonial-author">Rajesh Patel</p>
+          <p class="testimonial-role">Bangalore</p>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"Professional, reliable, and genuinely caring about customer satisfaction. Our Kerala journey with RYDEXS was seamless from start to finish. Thank you!"</p>
+          <p class="testimonial-author">Anjali Gupta</p>
+          <p class="testimonial-role">Bangalore</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;">
+        <h2 class="section-heading" style="margin-bottom: 0;">Follow The Journey</h2>
+        <p style="font-size: 1.1rem; opacity: 0.8;">@RYDEXS</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: url('pic-cap-1.jpg');">
+          <div class="gallery-icon"></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('temple-big-shiva.jpg');">
+          <div class="gallery-icon"></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('karnataka-home-banner.webp');">
+          <div class="gallery-icon"></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('Badami-Cave-Temples-2-e1751296647402.jpg');">
+          <div class="gallery-icon"></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('Karnataka-Tourism-Society-Membership-1.jpg');">
+          <div class="gallery-icon"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="dark-bg" style="padding: 6rem 2rem; text-align: center;">
+    <div style="max-width: 700px; margin: 0 auto;">
+      <h2 class="section-heading" style="color: white;">READY FOR YOUR NEXT ADVENTURE?</h2>
+      <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 2.5rem;">Your journey is waiting.</p>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary">PLAN YOUR TRIP</button>
+        <button class="btn btn-secondary">CONTACT US</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <img src="a_clean_high_contrast_modern_vector_logo_style_g.png" alt="RYDEXS" class="footer-logo">
+        <p class="footer-tagline">Your journey, our priority. Crafting unforgettable travel experiences from Bengaluru.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Bengaluru, Karnataka, India</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram">IG</a>
+        <a href="#" title="WhatsApp">WA</a>
+        <a href="#" title="Facebook">f</a>
+      </div>
+      <p>© 2026 RYDEXS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-stack">
+    <a href="#planner" class="fab fab-assistant" id="assistOpen" title="Trip Assistant">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="13" width="4" height="7" rx="1.5"/><rect x="18" y="13" width="4" height="7" rx="1.5"/><path d="M20 18v1a3 3 0 0 1-3 3h-3"/></svg>
+      </span>
+      <span class="fab-label">Trip Assistant</span>
+    </a>
+
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener" class="fab fab-whatsapp" title="Chat with us">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.445 4.436-9.879 9.888-9.879 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.445-4.437 9.879-9.885 9.879m8.413-18.297A11.815 11.815 0 0 0 12.05.083C5.495.083.16 5.418.157 11.974c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+      </span>
+      <span class="fab-label">Chat with us</span>
+    </a>
+
+    <button type="button" class="fab fab-top" id="scrollTopBtn" title="Back to top" aria-label="Back to top">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <!-- ASSISTANT MODAL -->
+  <div class="assist-overlay" id="assistOverlay" aria-hidden="true">
+    <div class="assist-modal" role="dialog" aria-modal="true" aria-labelledby="assistTitle">
+      <button type="button" class="assist-close" id="assistClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <div class="assist-header">
+        <h3 class="assist-title" id="assistTitle">Clear your doubts &amp;<span>Get Booking Assistance</span></h3>
+        <div class="assist-agent">
+          <span class="assist-agent-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.85.68 2.72a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.36-1.36a2 2 0 0 1 2.11-.45c.87.32 1.78.55 2.72.68A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <div>
+            <small>Talk to our agent</small>
+            <strong>+91 XXXXX XXXXX</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="assist-panel">
+        <div class="assist-benefits">
+          <div class="assist-benefit">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+            Get a personalized route plan
+          </div>
+          <div class="assist-benefit">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+            Learn about pricing for your travel
+          </div>
+        </div>
+
+        <form class="assist-form" id="assistForm">
+          <div class="assist-input-wrap">
+            <span class="assist-cc">+91</span>
+            <input type="tel" id="assistPhone" placeholder="Phone number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
+          </div>
+          <button type="submit" class="assist-submit">Schedule a call</button>
+        </form>
+        <p class="assist-confirm" id="assistConfirm">Thanks! Our team will call you back shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    // Navbar picks up its shadow, and the back-to-top button appears, after scrolling
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    // Back to top
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hamburger menu
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when link clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Mobile menu "Plan Your Trip" scrolls to the planner card
+    document.querySelector('.nav-menu-cta')?.addEventListener('click', (e) => {
+      const planner = document.querySelector('.planner-card');
+      if (planner) {
+        e.preventDefault();
+        planner.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Smooth scroll for CTA buttons
+    document.querySelectorAll('.nav-cta, .btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (btn.classList.contains('btn-secondary') || btn.classList.contains('btn-primary')) {
+          e.preventDefault();
+          // Scroll to planner card
+          document.querySelector('.planner-card')?.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Assistant modal (Get Booking Assistance)
+    const assistOverlay = document.getElementById('assistOverlay');
+    const assistOpen = document.getElementById('assistOpen');
+    const assistClose = document.getElementById('assistClose');
+    const assistForm = document.getElementById('assistForm');
+    const assistConfirm = document.getElementById('assistConfirm');
+
+    function openAssist(e) {
+      if (e) e.preventDefault();
+      assistOverlay.classList.add('open');
+      assistOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAssist() {
+      assistOverlay.classList.remove('open');
+      assistOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    assistOpen.addEventListener('click', openAssist);
+    assistClose.addEventListener('click', closeAssist);
+
+    // Close when clicking the dim backdrop (but not the modal itself)
+    assistOverlay.addEventListener('click', (e) => {
+      if (e.target === assistOverlay) closeAssist();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && assistOverlay.classList.contains('open')) closeAssist();
+    });
+
+    assistForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const phone = document.getElementById('assistPhone').value.trim();
+      if (!/^[0-9]{10}$/.test(phone)) return; // let the browser's required/pattern flag invalid input
+      assistConfirm.classList.add('show');
+      assistForm.reset();
+    });
+
+    // Fleet rate tabs
+    document.querySelectorAll('.fleet-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-panel');
+        document.querySelectorAll('.fleet-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.fleet-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + target).classList.add('active');
+      });
+    });
+
+    // Fleet card photo sliders (crossfade between images)
+    document.querySelectorAll('[data-slider]').forEach(slider => {
+      const slides = slider.querySelectorAll('.slide');
+      if (slides.length < 2) return;
+      let i = 0;
+      setInterval(() => {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, 3500);
+    });
+  </script>
+</body>
+</html>
