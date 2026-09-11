@@ -46,7 +46,11 @@
     html[data-theme="dark"] .destination-card,
     html[data-theme="dark"] .package-card,
     html[data-theme="dark"] .experience-card,
-    html[data-theme="dark"] .fleet-card { border-color: #333A45; }
+    html[data-theme="dark"] .fleet-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    html[data-theme="dark"] .fleet-content { background: #1E222A; }
+    html[data-theme="dark"] .fleet-name { color: #F0F2F5; }
+    html[data-theme="dark"] .fleet-desc { color: #C7CDD6; }
+    html[data-theme="dark"] .fleet-specs span { color: #B4BAC4; }
     html[data-theme="dark"] .faq-item { border-bottom-color: #2A2F38 !important; }
     html[data-theme="dark"] { color: #F0F2F5; }
     .theme-toggle {
@@ -70,6 +74,60 @@
     html[data-theme="dark"] .theme-toggle { border-color: #333A45; }
     .theme-toggle:hover { background: rgba(0,0,0,0.05); }
     html[data-theme="dark"] .theme-toggle:hover { background: #1E222A; }
+    /* ---- Corporate cards ---- */
+    html[data-theme="dark"] .corporate-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+    html[data-theme="dark"] .corporate-card h4 { color: #F0F2F5; }
+    html[data-theme="dark"] .corporate-card p { color: #C7CDD6; opacity: 1; }
+    /* ---- Curated Journey / package cards ---- */
+    html[data-theme="dark"] .journey-card { background: #1E222A; border: 1px solid #333A45; }
+    html[data-theme="dark"] .journey-title { color: #F0F2F5; }
+    html[data-theme="dark"] .journey-price { color: #C7CDD6; }
+    html[data-theme="dark"] .journey-desc,
+    html[data-theme="dark"] .journey-card p { color: #C7CDD6; }
+    /* ---- Rate table zebra + hover in dark ---- */
+    html[data-theme="dark"] .rate-table tbody tr:nth-child(even) { background: #23272F; }
+    html[data-theme="dark"] .rate-table tbody tr:hover { background: #2B303A; }
+    html[data-theme="dark"] .rate-table tbody td { color: #F0F2F5; }
+    /* ---- Inline light CTA box (Ready to Plan...) ---- */
+    html[data-theme="dark"] .corp-cta-box { background: #1E222A !important; }
+    html[data-theme="dark"] .corp-cta-box h3 { color: #F0F2F5; }
+    html[data-theme="dark"] .corp-cta-box p { color: #C7CDD6 !important; opacity: 1 !important; }
+    /* ===== Dark mode text legibility ===== */
+    /* Headings, labels, paragraphs and table text that were hardcoded dark */
+    html[data-theme="dark"] h1,
+    html[data-theme="dark"] h2,
+    html[data-theme="dark"] h3,
+    html[data-theme="dark"] h4,
+    html[data-theme="dark"] h5,
+    html[data-theme="dark"] h6,
+    html[data-theme="dark"] p,
+    html[data-theme="dark"] li,
+    html[data-theme="dark"] .section-title,
+    html[data-theme="dark"] .fleet-name,
+    html[data-theme="dark"] .fleet-specs,
+    html[data-theme="dark"] .fleet-specs span,
+    html[data-theme="dark"] .veh-name,
+    html[data-theme="dark"] .rate-table,
+    html[data-theme="dark"] .rate-table td,
+    html[data-theme="dark"] .journey-link { color: #F0F2F5; }
+    /* Small eyebrow labels/tabs keep the brand yellow so they stay visible */
+    html[data-theme="dark"] .section-label { color: var(--yellow, #F5B301); }
+    /* Rate table: dark surface + readable rows */
+    html[data-theme="dark"] .rate-table-wrap,
+    html[data-theme="dark"] .rate-table { background: #1E222A; }
+    html[data-theme="dark"] .rate-table tbody tr { border-color: #333A45; }
+    html[data-theme="dark"] .rate-table thead th { color: #1a1a1a; } /* header sits on yellow, keep dark */
+    /* Filter tabs: give them a dark pill so their text reads */
+    html[data-theme="dark"] .fleet-tab { background: #1E222A; border-color: #333A45; color: #C7CDD6; }
+    html[data-theme="dark"] .fleet-tab:hover { color: #F0F2F5; border-color: var(--yellow, #F5B301); }
+    html[data-theme="dark"] .fleet-tab.active { background: var(--yellow, #F5B301); border-color: var(--yellow, #F5B301); color: #1a1a1a; }
+    /* Fleet cards: card body text on dark */
+    /* Keep text inside yellow buttons dark for contrast */
+    html[data-theme="dark"] .nav-cta,
+    html[data-theme="dark"] .btn-primary,
+    html[data-theme="dark"] .planner-cta,
+    html[data-theme="dark"] .book-btn { color: #1a1a1a; }
+    /* Footer keeps its own (already-correct) colors — untouched */
     .theme-toggle-icon {
       width: 20px; height: 20px; flex-shrink: 0;
       background-color: currentColor;
@@ -2529,7 +2587,7 @@
         </div>
       </div>
 
-      <div style="margin-top: 4rem; padding: 2.5rem; background: #f8f8f8; border-radius: 8px; text-align: center;">
+      <div class="corp-cta-box" style="margin-top: 4rem; padding: 2.5rem; background: #f8f8f8; border-radius: 8px; text-align: center;">
         <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Ready to Plan Your Team's Next Adventure?</h3>
         <p style="opacity: 0.8; margin-bottom: 2rem; font-size: 1.05rem;">Get in touch with our corporate travel specialists for a personalized proposal.</p>
         <button class="btn btn-primary">PLAN CORPORATE TRAVEL</button>
