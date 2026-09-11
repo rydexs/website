@@ -349,7 +349,7 @@
       /* Photo first; the gradient below it is a real sunset-above-cloud
          fallback, so a failed image load still reads as intentional. */
       background-image:
-        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2000&q=80&auto=format&fit=crop'),
+        url('force-urbania.jpg'),
         linear-gradient(180deg,
           #241a2e 0%,
           #5c3242 30%,
@@ -358,7 +358,7 @@
           #8e93a8 70%,
           #4a5163 86%,
           #23283a 100%);
-      background-position: center 58%, center;
+      background-position: center 48%, center;
       background-size: cover, cover;
       background-repeat: no-repeat, no-repeat;
       animation: heroZoom 8s ease-out forwards;
@@ -1417,9 +1417,10 @@
     }
 
     .footer-logo {
-      height: 90px;
+      height: 72px;
       width: auto;
-      margin-bottom: 1rem;
+      display: block;
+      margin: 0 0 1rem 0;
     }
 
     .footer-tagline {
