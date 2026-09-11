@@ -31,6 +31,64 @@
     --wide-container: 1400px;
     --section-padding: 5rem;
   }
+  html[data-theme="dark"] {
+    --black: #F5F5F5;
+    --dark: #EDEDED;
+    --white: #14161A;
+    --light: #1B1E24;
+    --card: #1E222A;
+    --border: #333A45;
+    --border-light: #2A2F38;
+    --text: #F0F2F5;
+    --secondary: #B4BAC4;
+    --muted: #8A929E;
+  }
+  html[data-theme="dark"] body { background: var(--white); color: var(--text); }
+  html[data-theme="dark"] nav#navbar { background: #ffffff; border-bottom-color: rgba(5,5,5,0.08); }
+  html[data-theme="dark"] nav#navbar .nav-links a { color: #050505; }
+  html[data-theme="dark"] nav#navbar .hamburger span { background: #050505; }
+  html[data-theme="dark"] .theme-toggle { border-color: rgba(5,5,5,0.15); color: #050505; }
+  html[data-theme="dark"] .theme-toggle:hover { background: rgba(0,0,0,0.05); }
+  html[data-theme="dark"] .fleet-card,
+  html[data-theme="dark"] .showcase-media,
+  html[data-theme="dark"] .occasion-card,
+  html[data-theme="dark"] .service-card { background: var(--card); border-color: var(--border); }
+  html[data-theme="dark"] footer { background: #0E1013; }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--card); border-color: var(--muted); }
+  .theme-toggle-label { display: none; }
+  .theme-toggle-icon {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: center / contain no-repeat;
+    mask: center / contain no-repeat;
+    /* moon icon (default = light mode, offer to switch to dark) */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M21.75 15.5A9.75 9.75 0 0 1 8.5 2.25 9.75 9.75 0 1 0 21.75 15.5Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M21.75 15.5A9.75 9.75 0 0 1 8.5 2.25 9.75 9.75 0 1 0 21.75 15.5Z'/%3E%3C/svg%3E");
+  }
+  html[data-theme="dark"] .theme-toggle-icon {
+    /* sun icon (in dark mode, offer to switch to light) */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='black'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.2' y1='4.2' x2='5.6' y2='5.6'/%3E%3Cline x1='18.4' y1='18.4' x2='19.8' y2='19.8'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.2' y1='19.8' x2='5.6' y2='18.4'/%3E%3Cline x1='18.4' y1='5.6' x2='19.8' y2='4.2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='black'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.2' y1='4.2' x2='5.6' y2='5.6'/%3E%3Cline x1='18.4' y1='18.4' x2='19.8' y2='19.8'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.2' y1='19.8' x2='5.6' y2='18.4'/%3E%3Cline x1='18.4' y1='5.6' x2='19.8' y2='4.2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
 
   * { box-sizing: border-box; }
 
@@ -164,6 +222,15 @@
     .nav-links.active { display: flex; }
     .hamburger { display: flex; }
     .nav-cta { display: none; }
+    .theme-toggle {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      justify-content: flex-start;
+      margin-top: 0.25rem;
+    }
+    .theme-toggle-label { display: inline; }
     .nav-menu-cta {
       display: block;
       background: var(--yellow);
@@ -571,9 +638,10 @@
     padding-bottom: 3rem;
   }
   .footer-logo {
-    height: 90px;
+    height: 72px;
     width: auto;
-    margin-bottom: 1rem;
+    display: block;
+    margin: 0 0 1rem 0;
   }
   .footer-tagline {
     font-size: 0.95rem;
@@ -702,6 +770,10 @@
     <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
     <a href="index.html#book" class="nav-menu-cta">Book Now</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+      <span class="theme-toggle-label">Dark mode</span>
+    </button>
   </div>
   <a href="index.html#book" class="nav-cta">Book Now</a>
   <div class="hamburger" id="hamburger">
@@ -857,5 +929,26 @@
 })();
 </script>
 
+<script>
+(function(){
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    var b=document.getElementById('themeToggle');
+    if(b){ var l=b.querySelector('.theme-toggle-label'); if(l) l.textContent = (t==='dark') ? 'Light mode' : 'Dark mode'; }
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('rydexs-theme'); } catch(e){}
+  applyTheme(saved==='dark' ? 'dark' : 'light');
+  document.addEventListener('DOMContentLoaded', function(){
+    applyTheme(document.documentElement.getAttribute('data-theme'));
+    var btn=document.getElementById('themeToggle');
+    if(btn){ btn.addEventListener('click', function(){
+      var cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+      applyTheme(cur);
+      try { localStorage.setItem('rydexs-theme', cur); } catch(e){}
+    });}
+  });
+})();
+</script>
 </body>
 </html>
