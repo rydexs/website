@@ -807,13 +807,14 @@
 
     .destination-card {
       position: relative;
-      height: 400px;
+      aspect-ratio: 4 / 3;
       border-radius: 6px;
       overflow: hidden;
       cursor: pointer;
       background-size: cover;
-      background-position: center;
+      background-position: center center;
       background-repeat: no-repeat;
+      background-color: #11141a;
       transition: transform 0.5s ease;
     }
 
@@ -1719,7 +1720,11 @@
       }
 
       .destination-card {
-        height: 300px;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        min-height: 240px;
+        background-size: cover;
+        background-position: center center;
       }
 
       .experiences-grid {
@@ -2108,13 +2113,12 @@
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
-      <a href="#destinations">Destinations</a>
       <a href="fleet.html">Fleet</a>
       <a href="services.html">Services</a>
       <a href="#packages">Packages</a>
       <a href="#experiences">Experiences</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <a href="#home" class="nav-menu-cta">Plan Your Trip</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <span class="theme-toggle-icon" aria-hidden="true"></span>
@@ -2153,65 +2157,6 @@
     </div>
   </section>
   </div>
-
-  <!-- POPULAR DESTINATIONS -->
-  <section id="destinations" class="light-bg">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div class="section-label">EXPLORE FROM BENGALURU</div>
-      <h2 class="section-heading">Places Worth Going.</h2>
-      <p class="section-subtitle">From quick weekend escapes to unforgettable long journeys, discover destinations made for your next adventure.</p>
-
-      <div class="destinations-grid">
-        <div class="destination-card" style="background-image: url('coorg.png');">
-          <div class="destination-content">
-            <div class="destination-name">Coorg</div>
-            <p class="destination-desc">Misty mountains, coffee plantations, and waterfalls</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-
-        <div class="destination-card" style="background-image: url('chikkamagaluru.webp');">
-          <div class="destination-content">
-            <div class="destination-name">Chikmagalur</div>
-            <p class="destination-desc">Coffee estates, adventure trails, and serene landscapes</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-
-        <div class="destination-card" style="background-image: url('gokarna.jpg');">
-          <div class="destination-content">
-            <div class="destination-name">Gokarna</div>
-            <p class="destination-desc">Golden beaches, vibrant culture, and perfect sunsets</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-
-        <div class="destination-card" style="background-image: url('goa.jpg');">
-          <div class="destination-content">
-            <div class="destination-name">Goa</div>
-            <p class="destination-desc">Tropical paradise with beaches and Portuguese heritage</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-
-        <div class="destination-card" style="background-image: url('kerala.png');">
-          <div class="destination-content">
-            <div class="destination-name">Kerala</div>
-            <p class="destination-desc">Backwaters, houseboats, and spice plantations</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-
-        <div class="destination-card" style="background-image: url('mysore.jpg');">
-          <div class="destination-content">
-            <div class="destination-name">Mysore</div>
-            <p class="destination-desc">Royal palaces, lush gardens, and historic markets</p>
-            <a href="#" class="destination-link">Explore →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- OUR FLEET & RATES -->
   <section id="fleet" class="light-bg">
@@ -2268,6 +2213,10 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div style="text-align: center; margin: 2.5rem 0 0.5rem;">
+        <a href="fleet.html" class="btn btn-primary">VIEW FULL FLEET →</a>
       </div>
 
       <p class="rate-scroll-hint">← Swipe the table sideways to see all rates →</p>
@@ -2380,6 +2329,7 @@
       </p>
     </div>
   </section>
+
 
   <!-- WHY RYDEXS -->
   <section id="about">
@@ -2685,7 +2635,6 @@
       <div class="footer-section">
         <h4>Explore</h4>
         <ul>
-          <li><a href="#destinations">Destinations</a></li>
           <li><a href="#packages">Packages</a></li>
           <li><a href="#experiences">Experiences</a></li>
           <li><a href="#gallery">Gallery</a></li>
@@ -2695,8 +2644,8 @@
       <div class="footer-section">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#">Blog</a></li>
         </ul>
@@ -2708,7 +2657,7 @@
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Contact Support</a></li>
+          <li><a href="contact.html">Contact Support</a></li>
         </ul>
       </div>
     </div>
