@@ -2369,14 +2369,14 @@
   <div class="planner-container" id="planner">
     <div class="planner-card">
       <h3>Plan Your Journey</h3>
-      <form class="planner-form">
+      <form class="planner-form" id="plannerForm">
         <div>
           <label>From</label>
           <input type="text" value="Bengaluru" readonly>
         </div>
         <div>
           <label>Destination</label>
-          <select>
+          <select id="destPlan">
             <option>Where do you want to go?</option>
             <option>Coorg</option>
             <option>Chikmagalur</option>
@@ -2388,15 +2388,15 @@
         </div>
         <div>
           <label>Travel Date</label>
-          <input type="date">
+          <input type="date" id="travelDate">
         </div>
         <div>
           <label>Travellers</label>
-          <input type="number" placeholder="Number of people" min="1">
+          <input type="number" id="travellersPlan" placeholder="Number of people" min="1">
         </div>
         <div>
           <label>Trip Type</label>
-          <select>
+          <select id="tripTypePlan">
             <option>Select trip type</option>
             <option>Weekend Escape</option>
             <option>Adventure Trip</option>
@@ -2405,6 +2405,14 @@
             <option>Group Holiday</option>
             <option>Corporate Travel</option>
           </select>
+        </div>
+        <div>
+          <label for="namePlan">Your Name</label>
+          <input type="text" id="namePlan" placeholder="Enter your name" maxlength="100">
+        </div>
+        <div>
+          <label for="phonePlan">Phone Number</label>
+          <input type="tel" id="phonePlan" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
         </div>
         <button type="submit" class="planner-cta">GET A QUOTE</button>
       </form>
@@ -2666,7 +2674,7 @@
       <p>Bengaluru, Karnataka, India</p>
       <div class="footer-social">
         <a href="#" title="Instagram">IG</a>
-        <a href="#" title="WhatsApp">WA</a>
+        <a href="https://wa.me/919483607072" target="_blank" rel="noopener" title="WhatsApp">WA</a>
         <a href="#" title="Facebook">f</a>
       </div>
       <p>© 2026 RYDEXS. All rights reserved.</p>
@@ -2682,7 +2690,7 @@
       <span class="fab-label">Trip Assistant</span>
     </a>
 
-    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener" class="fab fab-whatsapp" title="Chat with us">
+    <a href="https://wa.me/919483607072" target="_blank" rel="noopener" class="fab fab-whatsapp" title="Chat with us">
       <span class="fab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.445 4.436-9.879 9.888-9.879 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.445-4.437 9.879-9.885 9.879m8.413-18.297A11.815 11.815 0 0 0 12.05.083C5.495.083.16 5.418.157 11.974c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
       </span>
@@ -2711,7 +2719,7 @@
           </span>
           <div>
             <small>Talk to our agent</small>
-            <strong>+91 XXXXX XXXXX</strong>
+            <strong><a href="tel:+919483607072" style="color:inherit;text-decoration:none;">+91 94836 07072</a></strong>
           </div>
         </div>
       </div>
@@ -2740,6 +2748,7 @@
     </div>
   </div>
 
+  <script src="supabase.js"></script>
   <script>
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
@@ -2824,12 +2833,34 @@
       if (e.key === 'Escape' && assistOverlay.classList.contains('open')) closeAssist();
     });
 
-    assistForm.addEventListener('submit', (e) => {
+    assistForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const phone = document.getElementById('assistPhone').value.trim();
       if (!/^[0-9]{10}$/.test(phone)) return; // let the browser's required/pattern flag invalid input
+      if (!await submitEnquiry(assistForm.querySelector('.assist-submit'), { source: 'callback', phone })) return;
       assistConfirm.classList.add('show');
       assistForm.reset();
+    });
+
+    // Trip planner "Get a Quote"
+    const plannerForm = document.getElementById('plannerForm');
+    plannerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = plannerForm.querySelector('.planner-cta');
+      const saved = await submitEnquiry(btn, {
+        source: 'planner',
+        name: document.getElementById('namePlan').value,
+        phone: document.getElementById('phonePlan').value,
+        destination: selectValue(document.getElementById('destPlan')),
+        travel_date: document.getElementById('travelDate').value,
+        travellers: parseInt(document.getElementById('travellersPlan').value, 10),
+        trip_type: selectValue(document.getElementById('tripTypePlan'))
+      });
+      if (!saved) return;
+      const label = btn.textContent;
+      btn.textContent = 'REQUEST RECEIVED';
+      setTimeout(() => btn.textContent = label, 2200);
+      plannerForm.reset();
     });
 
     // Fleet rate tabs
