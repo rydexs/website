@@ -1,0 +1,1525 @@
+/* RYDEXS — content styles for Home, About and Contact
+   Generated from the old inline <style> blocks; edit this file directly from now on. */
+
+html[data-theme="dark"] section,
+html[data-theme="dark"] .section { background: #14161A; }
+
+html[data-theme="dark"] [style*="background: #fff"],
+html[data-theme="dark"] [style*="background:#fff"] { background: #1E222A !important; }
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .service-card,
+html[data-theme="dark"] .testimonial-card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .feature-card,
+html[data-theme="dark"] .value-card { background: #1E222A !important; border-color: #333A45 !important; color: #F0F2F5; }
+
+/* Image-backed cards keep their inline photo; just adjust border/text in dark */
+html[data-theme="dark"] .destination-card,
+html[data-theme="dark"] .package-card,
+html[data-theme="dark"] .experience-card,
+html[data-theme="dark"] .fleet-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+html[data-theme="dark"] .fleet-content { background: #1E222A; }
+
+html[data-theme="dark"] .fleet-name { color: #F0F2F5; }
+
+html[data-theme="dark"] .fleet-desc { color: #C7CDD6; }
+
+html[data-theme="dark"] .fleet-specs span { color: #B4BAC4; }
+
+html[data-theme="dark"] .faq-item { border-bottom-color: #2A2F38 !important; }
+
+/* ---- Corporate cards ---- */
+html[data-theme="dark"] .corporate-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+
+html[data-theme="dark"] .corporate-card h4 { color: #F0F2F5; }
+
+html[data-theme="dark"] .corporate-card p { color: #C7CDD6; opacity: 1; }
+
+/* ---- Curated Journey / package cards ---- */
+html[data-theme="dark"] .journey-card { background: #1E222A; border: 1px solid #333A45; }
+
+html[data-theme="dark"] .journey-title { color: #F0F2F5; }
+
+html[data-theme="dark"] .journey-price { color: #C7CDD6; }
+
+html[data-theme="dark"] .journey-desc,
+html[data-theme="dark"] .journey-card p { color: #C7CDD6; }
+
+/* ---- Rate table zebra + hover in dark ---- */
+html[data-theme="dark"] .rate-table tbody tr:nth-child(even) { background: #23272F; }
+
+html[data-theme="dark"] .rate-table tbody tr:hover { background: #2B303A; }
+
+html[data-theme="dark"] .rate-table tbody td { color: #F0F2F5; }
+
+/* ---- Inline light CTA box (Ready to Plan...) ---- */
+html[data-theme="dark"] .corp-cta-box { background: #1E222A !important; }
+
+html[data-theme="dark"] .corp-cta-box h3 { color: #F0F2F5; }
+
+html[data-theme="dark"] .corp-cta-box p { color: #C7CDD6 !important; opacity: 1 !important; }
+
+/* Headings, labels, paragraphs and table text that were hardcoded dark */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] .section-title,
+html[data-theme="dark"] .fleet-name,
+html[data-theme="dark"] .fleet-specs,
+html[data-theme="dark"] .fleet-specs span,
+html[data-theme="dark"] .veh-name,
+html[data-theme="dark"] .rate-table,
+html[data-theme="dark"] .rate-table td,
+html[data-theme="dark"] .journey-link { color: #F0F2F5; }
+
+/* Small eyebrow labels/tabs keep the brand yellow so they stay visible */
+html[data-theme="dark"] .section-label { color: var(--yellow, #F5B301); }
+
+/* Rate table: dark surface + readable rows */
+html[data-theme="dark"] .rate-table-wrap,
+html[data-theme="dark"] .rate-table { background: #1E222A; }
+
+html[data-theme="dark"] .rate-table tbody tr { border-color: #333A45; }
+
+html[data-theme="dark"] .rate-table thead th { color: #1a1a1a; }
+
+/* Filter tabs: give them a dark pill so their text reads */
+html[data-theme="dark"] .fleet-tab { background: #1E222A; border-color: #333A45; color: #C7CDD6; }
+
+html[data-theme="dark"] .fleet-tab:hover { color: #F0F2F5; border-color: var(--yellow, #F5B301); }
+
+html[data-theme="dark"] .fleet-tab.active { background: var(--yellow, #F5B301); border-color: var(--yellow, #F5B301); color: #1a1a1a; }
+
+/* Keep text inside yellow buttons dark for contrast */
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .planner-cta,
+html[data-theme="dark"] .book-btn { color: #1a1a1a; }
+
+/* Hero upper section - the brand travels along this axis */
+.hero-upper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 2rem 0 2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.brand-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  max-width: 100%;
+}
+
+/* Light that converges where the vehicle is heading. Sells the
+   vanishing point regardless of what the background photo does. */
+.road-glow {
+  position: absolute;
+  left: 50%;
+  top: 34%;
+  width: 70vw;
+  max-width: 900px;
+  aspect-ratio: 3 / 2;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+  ellipse at center,
+  rgba(255, 214, 170, 0.5) 0%,
+  rgba(255, 160, 110, 0.18) 32%,
+  rgba(245, 179, 1, 0.06) 55%,
+  rgba(0, 0, 0, 0) 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  will-change: opacity;
+}
+
+/* Vehicle - recedes toward the vanishing point */
+.vehicle-element {
+  will-change: transform, opacity;
+  transform-origin: center center;
+  display: block;
+  backface-visibility: hidden;
+}
+
+.vehicle-image {
+  display: block;
+  width: 300px;
+  max-width: 62vw;
+  height: auto;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.55));
+}
+
+/* Wordmark + tagline - fade out in place, never move sideways */
+.wordmark-element {
+  will-change: opacity, transform;
+  transform-origin: center top;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.wordmark-image {
+  display: block;
+  /* 1248/716 keeps the original logo lockup proportions against the van */
+  width: 523px;
+  max-width: 108vw;
+  height: auto;
+}
+
+/* Hero lower section - main content, never touched by the animation */
+.hero-lower {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 0 2rem 4rem;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+@media (max-width: 1024px) {
+  .vehicle-image { width: 240px; }
+  .wordmark-image { width: 418px; }
+}
+
+@media (max-width: 768px) {
+  .hero-lower {
+    flex: 1.1;
+    padding: 0 1.5rem 3rem;
+  }
+  .vehicle-image { width: 190px; }
+  .wordmark-image { width: 331px; }
+  .road-glow { top: 32%; width: 100vw; }
+}
+
+@media (max-width: 480px) {
+  .hero-upper {
+    flex: 0.85;
+    padding: 68px 1rem 0 1rem;
+  }
+  .hero-lower {
+    flex: 1.15;
+    padding: 0 1rem 2.5rem;
+  }
+  .vehicle-image { width: 148px; }
+  .wordmark-image { width: 258px; }
+}
+
+/* Landscape tablets/phones: very little vertical room, so compress the stage */
+@media (max-height: 620px) and (orientation: landscape) {
+  .hero-upper {
+    flex: 0.75;
+    padding-top: 70px;
+  }
+  .vehicle-image { width: 160px; }
+  .wordmark-image { width: 279px; }
+}
+
+/* Scroll region is taller than the viewport; the hero sticks to the top while
+   the extra height scrolls past. That travel distance is what drives the
+   brand animation, so the vehicle stays on screen while it plays. */
+.hero-scroll-region {
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Keeps the upper stage clear for the vehicle, darkens the lower
+     half so the heading holds contrast against any photo. */
+  /* darker at the very top so the white navbar text reads over the video */
+  background: linear-gradient(180deg,
+  rgba(5, 5, 5, 0.55) 0%,
+  rgba(5, 5, 5, 0.12) 20%,
+  rgba(5, 5, 5, 0.42) 60%,
+  rgba(5, 5, 5, 0.80) 100%);
+  z-index: 2;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* White studio backdrop to match the video */
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+/* Force Urbania rotation video filling the hero. It is 8% taller than the hero and
+   anchored to the top, so the bottom strip of the video (with its "18°" caption)
+   sits below the visible area (.hero has overflow: hidden). */
+.hero-video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 108%;
+  object-fit: cover;
+  object-position: center top;
+  transition: opacity 0.35s ease;
+}
+
+/* Brief fade to white while the video jumps from its last frame back to the first */
+.hero-video.is-looping {
+  opacity: 0;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 800px;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    margin-top: 1.5rem;
+  }
+  /* Tall phone screens would crop the video to a close-up of the door, so show the
+     whole frame (slightly wider than the screen) centred on the white backdrop,
+     and clip off the caption strip at the bottom of the video */
+  .hero-video {
+    top: 50%;
+    left: 50%;
+    width: 140vw;
+    height: auto;
+    aspect-ratio: 1024 / 688;
+    transform: translate(-50%, -50%);
+    clip-path: inset(0 0 6% 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  /* Thin yellow outline so the white letters stay legible over the
+     light parts of the hero photo. */
+  -webkit-text-stroke: 1.4px var(--yellow, #F5B301);
+  text-stroke: 1.4px var(--yellow, #F5B301);
+  paint-order: stroke fill;
+  text-shadow:
+  0 0 2px rgba(245, 179, 1, 0.55),
+  0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+  line-height: 1.7;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 0 auto 2.25rem;
+  max-width: 640px;
+  color: #ffffff;
+  opacity: 0.96;
+  line-height: 1.6;
+}
+
+.hero-tagline .hl-accent {
+  color: var(--yellow, #F5B301);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .hero-tagline { font-size: 0.9rem; margin-bottom: 1.75rem; }
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero h1 .hl {
+  display: block;
+}
+
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroCarry 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes heroCarry {
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal { opacity: 1; transform: none; animation: none; }
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: #F5B301;
+  color: #1a1a1a;
+}
+
+.btn-primary:hover {
+  background: #d99a00;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(245, 179, 1, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background: white;
+  color: #050505;
+  transform: translateY(-3px);
+}
+
+/* ==================== TRIP PLANNER CARD ==================== */
+.planner-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem 5rem;
+  animation: planeCardIn 1s ease-out 0.7s forwards;
+  opacity: 0;
+}
+
+@keyframes planeCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.planner-card {
+  background: white;
+  border-radius: 8px;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.planner-card:hover {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+}
+
+.planner-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.planner-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  align-items: end;
+}
+
+.planner-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.planner-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.planner-form input,
+.planner-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.planner-form input:focus,
+.planner-form select:focus {
+  outline: none;
+  border-color: #F5B301;
+  box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.1);
+}
+
+.planner-form input::placeholder {
+  color: #999;
+}
+
+.planner-form > div:nth-child(1),
+.planner-form > div:nth-child(2),
+.planner-form > div:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+.planner-cta {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  background: #F5B301;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.planner-cta:hover {
+  background: #d99a00;
+  transform: translateY(-2px);
+}
+
+/* ==================== SECTION SPACING ==================== */
+section {
+  padding: 5rem 2rem;
+}
+
+section.dark-bg {
+  background: #1a1a1a;
+  color: white;
+}
+
+section.light-bg {
+  background: #f8f8f8;
+}
+
+.section-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #050505;
+  margin-bottom: 1rem;
+}
+
+.section-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 600px;
+  opacity: 0.85;
+  margin-bottom: 3rem;
+}
+
+/* ==================== POPULAR DESTINATIONS ==================== */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.destination-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #11141a;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover {
+  transform: scale(1.02);
+}
+
+.destination-card-img {
+  position: absolute;
+  inset: 0;
+  background: center/cover no-repeat;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover .destination-card-img {
+  transform: scale(1.08);
+}
+
+.destination-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.destination-card:hover::before {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.destination-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  z-index: 3;
+  color: white;
+}
+
+.destination-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.destination-desc {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.destination-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #F5B301;
+  text-decoration: none;
+  font-weight: 600;
+  transition: gap 0.3s ease;
+}
+
+.destination-link:hover {
+  gap: 1rem;
+}
+
+/* ==================== OUR FLEET & RATES ==================== */
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.fleet-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.fleet-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+}
+
+.fleet-card-img {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ececec;
+  transition: transform 0.5s ease;
+}
+
+.fleet-card:hover .fleet-card-img {
+  transform: scale(1.06);
+}
+
+/* Crossfading photo slideshow inside a fleet card image area */
+.fleet-card-slider {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background-color: #ececec;
+}
+
+.fleet-card-slider .slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease, transform 0.5s ease;
+}
+
+.fleet-card-slider .slide.active {
+  opacity: 1;
+}
+
+.fleet-card:hover .fleet-card-slider .slide.active {
+  transform: scale(1.06);
+}
+
+.fleet-content {
+  padding: 1.75rem 2rem 2rem;
+}
+
+.fleet-tag {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #F5B301;
+  margin-bottom: 0.75rem;
+}
+
+.fleet-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.fleet-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.25rem;
+}
+
+.fleet-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.fleet-specs span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fleet-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.fleet-tab {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid #e2e2e2;
+  border-radius: 999px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.fleet-tab:hover {
+  border-color: #F5B301;
+  color: #1a1a1a;
+}
+
+.fleet-tab.active {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+
+.fleet-panel {
+  display: none;
+}
+
+.fleet-panel.active {
+  display: block;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.rate-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  background: #fff;
+}
+
+.rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 0.9rem;
+}
+
+.rate-table thead th {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem 1.1rem;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+}
+
+.rate-table thead th:not(:first-child) {
+  text-align: center;
+}
+
+.rate-table tbody td {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.rate-table tbody td:not(:first-child) {
+  text-align: center;
+  font-weight: 600;
+}
+
+.rate-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.rate-table tbody tr:hover {
+  background: #fff7e6;
+}
+
+.rate-table .veh-name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.rate-table .veh-seat {
+  display: block;
+  font-size: 0.78rem;
+  color: #888;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.rate-note {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #666;
+}
+
+.rate-note strong {
+  color: #1a1a1a;
+}
+
+/* Hint that the rate table scrolls sideways on narrow screens */
+.rate-scroll-hint {
+  display: none;
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0 0 0.6rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .fleet-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+  .fleet-card-img,
+  .fleet-card-slider {
+    height: 200px;
+  }
+  /* Keep the tabs on one line, scrollable, instead of wrapping messily */
+  .fleet-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.4rem;
+    margin-top: 2rem;
+  }
+  .fleet-tab {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .rate-scroll-hint {
+    display: block;
+  }
+  .rate-table {
+    min-width: 560px;
+    font-size: 0.82rem;
+  }
+  .rate-table thead th {
+    padding: 0.75rem 0.7rem;
+    font-size: 0.72rem;
+  }
+  .rate-table tbody td {
+    padding: 0.7rem 0.7rem;
+  }
+  .rate-table .veh-seat {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fleet-content {
+    padding: 1.4rem 1.4rem 1.6rem;
+  }
+  .fleet-name {
+    font-size: 1.3rem;
+  }
+  .fleet-specs {
+    gap: 0.9rem;
+    font-size: 0.8rem;
+  }
+  .rate-table {
+    min-width: 500px;
+  }
+}
+
+/* ==================== WHY RYDEXS ==================== */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.benefit {
+  text-align: left;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.benefit:nth-child(1) { animation-delay: 0s; }
+
+.benefit:nth-child(2) { animation-delay: 0.1s; }
+
+.benefit:nth-child(3) { animation-delay: 0.2s; }
+
+.benefit:nth-child(4) { animation-delay: 0.3s; }
+
+.benefit:nth-child(5) { animation-delay: 0.4s; }
+
+.benefit:nth-child(6) { animation-delay: 0.5s; }
+
+.benefit-icon {
+  width: 50px;
+  height: 50px;
+  background: #F5B301;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+}
+
+.benefit:hover .benefit-icon {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(245, 179, 1, 0.3);
+}
+
+.benefit h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.benefit p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* ==================== FEATURED JOURNEYS ==================== */
+.journeys-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.journey-card {
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.journey-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+}
+
+.journey-img {
+  height: 250px;
+  background: center/cover no-repeat;
+  transition: transform 0.5s ease;
+}
+
+.journey-card:hover .journey-img {
+  transform: scale(1.05);
+}
+
+.journey-body {
+  padding: 2rem;
+}
+
+.journey-meta {
+  font-size: 0.85rem;
+  color: #F5B301;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.journey-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.journey-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.journey-price {
+  color: #1a9e4b;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.journey-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #050505;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.journey-link:hover {
+  color: #F5B301;
+  gap: 1rem;
+}
+
+/* ==================== TRAVEL EXPERIENCES ==================== */
+.experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.experience-card {
+  position: relative;
+  height: 300px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: center/cover no-repeat;
+}
+
+.experience-card:nth-child(1),
+.experience-card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.experience-card:nth-child(3),
+.experience-card:nth-child(4) {
+  grid-column: span 2;
+}
+
+.experience-card:nth-child(5),
+.experience-card:nth-child(6) {
+  grid-column: span 3;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.experience-card:hover::before {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.experience-label {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover .experience-label {
+  transform: translateY(-8px);
+}
+
+/* ==================== CORPORATE TRAVEL ==================== */
+.corporate-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.corporate-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.corporate-card h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #050505;
+}
+
+.corporate-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* ==================== CUSTOM TRIP CTA ==================== */
+.custom-cta {
+  position: relative;
+  text-align: center;
+  padding: 6rem 2rem;
+  color: white;
+  overflow: hidden;
+}
+
+.custom-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=1200&fit=crop') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.custom-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.6);
+  z-index: 2;
+}
+
+.custom-cta-content {
+  position: relative;
+  z-index: 3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.custom-cta h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.custom-cta p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+/* ==================== TESTIMONIALS ==================== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.testimonial {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-rating {
+  color: #F5B301;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-role {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ==================== GALLERY ==================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: center/cover no-repeat;
+}
+
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(5) {
+  aspect-ratio: 2;
+}
+
+.gallery-item:nth-child(3) {
+  aspect-ratio: 0.8;
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.gallery-item:hover::before {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.gallery-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-icon {
+  opacity: 1;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .planner-form {
+    grid-template-columns: 1fr;
+  }
+  .planner-form > div:nth-child(2),
+  .planner-form > div:nth-child(5) {
+    grid-column: 1;
+  }
+  .destinations-grid {
+    grid-template-columns: 1fr;
+  }
+  .destination-card {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    min-height: 240px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .experiences-grid {
+    grid-template-columns: 1fr;
+  }
+  .experience-card {
+    grid-column: span 1 !important;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(5) {
+    aspect-ratio: 1;
+  }
+  section {
+    padding: 3rem 1rem;
+  }
+  .section-heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    gap: 0.8rem;
+  }
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  .planner-card {
+    padding: 1.5rem;
+  }
+  .planner-card h3 {
+    font-size: 1.4rem;
+  }
+  .planner-form {
+    gap: 1rem;
+  }
+  .benefit-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ==================== ABOUT & CONTACT PAGES ==================== */
+
+.page-hero{min-height:68vh;display:flex;align-items:center;position:relative;padding:9rem 2rem 5rem;background:linear-gradient(90deg,rgba(5,5,5,.88) 0%,rgba(5,5,5,.62) 48%,rgba(5,5,5,.30) 100%),url('../vidhana soudha.webp') center/cover no-repeat;color:#fff}
+
+.page-hero-content{width:min(1200px,100%);margin:0 auto}
+
+.page-hero .section-label{color:#F5B301}
+
+.page-hero h1{font-family:'Poppins',sans-serif;font-size:clamp(3rem,8vw,6rem);font-weight:800;line-height:1.02;max-width:950px;margin-bottom:1.5rem}
+
+.page-hero p{max-width:650px;font-size:1.12rem;line-height:1.8;color:rgba(255,255,255,.9)}
+
+.about-intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:4rem;align-items:center}
+
+.about-copy p{margin-bottom:1.25rem;font-size:1.02rem;line-height:1.8;opacity:.88}
+
+.about-panel{background:#050505;color:#fff;border-radius:8px;padding:2.5rem;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+
+.about-panel .panel-label{color:#F5B301;font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:.9rem;margin-bottom:1rem}
+
+.about-panel h3{font-family:'Poppins',sans-serif;font-size:2rem;line-height:1.25;margin-bottom:1rem}
+
+.about-panel p{opacity:.82;line-height:1.75}
+
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+.value-card{background:#fff;border-radius:8px;padding:2rem;box-shadow:0 12px 35px rgba(0,0,0,.08);transition:transform .3s ease,box-shadow .3s ease}
+
+.value-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,0,0,.12)}
+
+.value-number{color:#F5B301;font-family:'Poppins',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:2px;margin-bottom:1rem}
+
+.value-card h4{font-family:'Poppins',sans-serif;font-size:1.2rem;margin-bottom:.8rem}
+
+.value-card p{font-size:.95rem;line-height:1.7;opacity:.8}
+
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
+
+.contact-card{background:#fff;border-radius:8px;padding:2.5rem;box-shadow:0 12px 35px rgba(0,0,0,.08)}
+
+.contact-card h3{font-family:'Poppins',sans-serif;font-size:1.6rem;margin-bottom:1.25rem}
+
+.contact-item{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem 0;border-bottom:1px solid #ececec}
+
+.contact-item:last-child{border-bottom:0}
+
+.contact-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:6px;background:#F5B301;color:#050505;font-weight:800}
+
+.contact-item strong{display:block;font-family:'Poppins',sans-serif;margin-bottom:.2rem}
+
+.contact-item span,.contact-item a{color:inherit;opacity:.78;text-decoration:none}
+
+.contact-note{margin-top:1.25rem;padding:1rem 1.25rem;background:#FFF8E6;border-radius:8px;line-height:1.65;font-size:.92rem}
+
+.contact-form-card{background:#1A1A1A;color:#fff;border-radius:8px;padding:2.5rem}
+
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+
+.contact-form .full{grid-column:1/-1}
+
+.contact-form label{display:block;margin-bottom:.45rem;font-size:.84rem;font-weight:600}
+
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;box-sizing:border-box;padding:1rem;border:1px solid rgba(255,255,255,.14);border-radius:4px;background:#fff;color:#050505;font:inherit}
+
+.contact-form textarea{min-height:150px;resize:vertical}
+
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:#F5B301;box-shadow:0 0 0 3px rgba(245,179,1,.12)}
+
+.contact-submit{grid-column:1/-1;padding:1rem;background:#F5B301;color:#1a1a1a;border:0;border-radius:4px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .3s ease}
+
+.contact-submit:hover{background:#D99A00;transform:translateY(-2px)}
+
+.form-confirm{display:none;margin-top:1rem;color:#7be3a3;font-weight:600}
+
+.form-confirm.show{display:block}
+
+.contact-planner-wrap{margin-top:-1.5rem;position:relative;z-index:5}
+
+@media(max-width:900px) {
+  .about-intro,.contact-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .page-hero{min-height:58vh}
+}
+
+@media(max-width:640px) {
+  .page-hero{padding:8rem 1rem 4rem}
+  .page-hero h1{font-size:clamp(2.6rem,14vw,4rem)}
+  .about-panel,.contact-card,.contact-form-card{padding:1.5rem}
+  .contact-form{grid-template-columns:1fr}
+  .contact-form .full,.contact-submit{grid-column:1}
+}
+
+/* Dark mode: keep the About/Contact hero text and form confirmation colours */
+html[data-theme="dark"] .page-hero h1 { color: #fff; }
+html[data-theme="dark"] .page-hero p { color: rgba(255,255,255,.9); }
+html[data-theme="dark"] .form-confirm { color: #7be3a3; }
