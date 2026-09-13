@@ -25,6 +25,8 @@
 
   const MENU = [
     ['index', 'index.html', 'Home'],
+    ['', 'index.html#urbania', 'Urbania'],               // Tempo & Vans rates on Home, Urbania rows highlighted
+    ['', 'index.html#tempo-traveller', 'Tempo Traveller'], // same table, Tempo Traveller rows highlighted
     ['fleet', 'fleet.html', 'Fleet'],
     ['services', 'services.html', 'Services'],
     ['', 'index.html#packages', 'Packages'],

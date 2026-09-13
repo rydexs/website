@@ -110,7 +110,7 @@ nav#navbar.nav-transparent:not(.scrolled):not(.menu-open) .logo img {
 }
 
 /* Over a photo (Home, About, Contact) the white menu text gets a soft shadow */
-@media (min-width: 901px) {
+@media (min-width: 1181px) {
   nav#navbar.nav-on-dark:not(.scrolled) .nav-links a:not(.nav-menu-cta) {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
@@ -150,6 +150,7 @@ html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-op
 
 .nav-links a {
   text-decoration: none;
+  white-space: nowrap;
   color: inherit;
   font-size: 0.95rem;
   font-weight: 500;
@@ -193,6 +194,14 @@ html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-op
   transform: translateY(-2px);
 }
 
+/* Medium desktops: tighter menu so all nine links fit beside the logo and button */
+@media (min-width: 1181px) and (max-width: 1500px) {
+  .nav-links { gap: 1.6rem; }
+  .nav-links a { font-size: 0.9rem; }
+  nav, nav.scrolled { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .nav-cta { padding: 0.7rem 1.3rem; }
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -217,9 +226,9 @@ html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-op
   transition: all 0.3s ease;
 }
 
-/* Switch to the hamburger menu earlier so the header CTA and the menu icon
-   never appear side by side on medium/small screens. */
-@media (max-width: 900px) {
+/* Switch to the hamburger menu below 1180px: nine menu links plus the logo and
+   "Plan Your Trip" button no longer fit in one row there. */
+@media (max-width: 1180px) {
   .nav-links {
     display: none;
     position: fixed;

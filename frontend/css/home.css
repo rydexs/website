@@ -265,12 +265,12 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  /* White studio backdrop to match the video */
-  background-color: #ffffff;
+  /* Light grey studio backdrop matching the video, so its edges and the loop fade blend in */
+  background-color: #d1d1d1;
   z-index: 1;
 }
 
-/* RYDEXS-branded Urbania rotation video (16:9) filling the hero */
+/* White RYDEXS-branded Urbania video (images/white-urbania.mp4, 16:9) filling the hero */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -281,7 +281,7 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   transition: opacity 0.35s ease;
 }
 
-/* Brief fade to white while the video jumps from its last frame back to the first */
+/* Brief fade to the backdrop while the video jumps from its last frame back to the first */
 .hero-video.is-looping {
   opacity: 0;
 }
@@ -523,69 +523,199 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
 .planner-card h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   font-weight: 700;
 }
 
-.planner-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  align-items: end;
+/* ----- Trip planner (js/planner.js): tabs, round trip / one way, fields with icons ----- */
+.trip-planner [hidden] {
+  display: none !important;
 }
 
-.planner-form > div {
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.trip-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 1.5rem;
+}
+
+.trip-tab {
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.25rem 0.9rem;
+  background: none;
+  border: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b6b6b;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
-.planner-form label {
-  display: block;
-  margin-bottom: 0.5rem;
+.trip-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.trip-tab:hover {
+  color: #1a1a1a;
+}
+
+.trip-tab[aria-selected="true"] {
+  color: #1a1a1a;
+}
+
+.trip-tab[aria-selected="true"] svg {
+  color: #d99a00;
+}
+
+.trip-tab[aria-selected="true"]::after {
+  background: #F5B301;
+}
+
+.trip-panel {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem 1.25rem;
+  margin-bottom: 1.1rem;
+}
+
+.planner-grid .full {
+  grid-column: 1 / -1;
+}
+
+.trip-toggle {
+  justify-self: center;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #e0e0e0;
+  border-radius: 999px;
+}
+
+.trip-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.3rem;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.trip-toggle button[aria-pressed="true"] {
+  background: #2B2F36;
+  color: #ffffff;
+}
+
+.trip-toggle button[aria-pressed="true"] svg {
+  color: #F5B301;
+}
+
+.trip-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.trip-field label {
+  margin-bottom: 0.45rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: #333;
 }
 
-.planner-form input,
-.planner-form select {
+.trip-input {
+  position: relative;
+}
+
+.trip-input svg {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9a9a9a;
+  pointer-events: none;
+}
+
+.trip-input input,
+.trip-input select {
   width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
+  min-width: 0;
+  padding: 0.9rem 0.9rem;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1a1a1a;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.95rem;
-  background: white;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.planner-form input:focus,
-.planner-form select:focus {
+.trip-input svg + input,
+.trip-input svg + select {
+  padding-left: 2.6rem;
+}
+
+.trip-input input:focus,
+.trip-input select:focus {
   outline: none;
   border-color: #F5B301;
-  box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.1);
+  box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.15);
 }
 
-.planner-form input::placeholder {
+.trip-input input:focus + svg,
+.trip-input:focus-within svg {
+  color: #d99a00;
+}
+
+.trip-input input::placeholder {
   color: #999;
 }
 
-.planner-form > div:nth-child(1),
-.planner-form > div:nth-child(2),
-.planner-form > div:nth-child(5) {
-  grid-column: 1 / -1;
-}
-
 .planner-cta {
-  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 0.4rem;
   padding: 1rem;
   background: #F5B301;
   color: #1a1a1a;
   border: none;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
@@ -594,6 +724,35 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
 .planner-cta:hover {
   background: #d99a00;
   transform: translateY(-2px);
+}
+
+.planner-confirm {
+  margin-top: 0.9rem;
+  color: #1a9e4b;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .planner-card { background: #1E222A; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45); }
+html[data-theme="dark"] .trip-tabs { border-bottom-color: #333A45; }
+html[data-theme="dark"] .trip-tab { color: #9aa2ad; }
+html[data-theme="dark"] .trip-tab:hover,
+html[data-theme="dark"] .trip-tab[aria-selected="true"] { color: #F0F2F5; }
+html[data-theme="dark"] .trip-toggle { border-color: #333A45; }
+html[data-theme="dark"] .trip-toggle button { color: #C7CDD6; }
+html[data-theme="dark"] .trip-toggle button[aria-pressed="true"] { background: #F5B301; color: #1a1a1a; }
+html[data-theme="dark"] .trip-toggle button[aria-pressed="true"] svg { color: #1a1a1a; }
+html[data-theme="dark"] .trip-field label { color: #C7CDD6; }
+html[data-theme="dark"] .trip-input input,
+html[data-theme="dark"] .trip-input select { background: #14161A; border-color: #333A45; color: #F0F2F5; color-scheme: dark; }
+html[data-theme="dark"] .planner-confirm { color: #7be3a3; }
+
+/* Narrow cards: one column, compact tabs */
+@media (max-width: 560px) {
+  .planner-grid { grid-template-columns: 1fr; }
+  .trip-tab { font-size: 0.85rem; }
+  .trip-toggle button { padding: 0.5rem 1rem; font-size: 0.9rem; }
 }
 
 /* ==================== SECTION SPACING ==================== */
@@ -932,6 +1091,16 @@ section.light-bg {
   color: #888;
   font-weight: 500;
   margin-top: 2px;
+}
+
+/* Rows picked from the navbar (Urbania / Tempo Traveller) glow yellow for a moment */
+.rate-table tbody tr.rate-highlight td {
+  animation: rateHighlight 3s ease-out;
+}
+
+@keyframes rateHighlight {
+  0%, 40% { background-color: rgba(245, 179, 1, 0.28); }
+  100% { background-color: transparent; }
 }
 
 .rate-note {
@@ -1397,13 +1566,6 @@ section.light-bg {
     flex-direction: column;
     gap: 1rem;
   }
-  .planner-form {
-    grid-template-columns: 1fr;
-  }
-  .planner-form > div:nth-child(2),
-  .planner-form > div:nth-child(5) {
-    grid-column: 1;
-  }
   .destinations-grid {
     grid-template-columns: 1fr;
   }
@@ -1448,9 +1610,6 @@ section.light-bg {
   }
   .planner-card h3 {
     font-size: 1.4rem;
-  }
-  .planner-form {
-    gap: 1rem;
   }
   .benefit-icon {
     width: 40px;

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/home.css">
   <script src="js/supabase.js"></script>
   <script src="js/site.js"></script>
+  <script src="js/planner.js" defer></script>
 </head>
 <body>
   <!-- NAVBAR -->
@@ -18,7 +19,7 @@
   <div class="hero-scroll-region" id="heroScrollRegion">
   <section class="hero" id="home">
     <div class="hero-bg">
-      <video class="hero-video" src="images/White_van_rotating.mp4" poster="images/White_van_rotating-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <video class="hero-video" src="images/white-urbania.mp4" poster="images/white-urbania-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
     </div>
 
 
@@ -154,15 +155,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="veh-name">Tempo Traveller 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹5,000</td><td>₹500</td><td>₹27</td><td>₹28</td><td>₹600</td></tr>
-              <tr><td><span class="veh-name">Tempo Traveller Non-AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹3,800</td><td>₹450</td><td>₹17</td><td>₹18</td><td>₹500</td></tr>
-              <tr><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹4,500</td><td>₹500</td><td>₹20</td><td>₹21</td><td>₹500</td></tr>
-              <tr><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,000</td><td>₹750</td><td>₹28</td><td>₹30</td><td>₹600</td></tr>
-              <tr><td><span class="veh-name">Tempo Traveller AC 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹6,000</td><td>₹500</td><td>₹28</td><td>₹28</td><td>₹600</td></tr>
-              <tr><td><span class="veh-name">Force Urbania 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹9,500</td><td>₹400</td><td>₹42</td><td>₹42</td><td>₹700</td></tr>
-              <tr><td><span class="veh-name">Force Urbania 10 Seater</span><span class="veh-seat">10+1 · 2+1 Layout</span></td><td>₹6,500</td><td>₹400</td><td>₹34</td><td>₹32</td><td>₹700</td></tr>
-              <tr><td><span class="veh-name">Force Urbania 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,500</td><td>₹400</td><td>₹40</td><td>₹40</td><td>₹700</td></tr>
-              <tr><td><span class="veh-name">Force Urbania 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹8,000</td><td>₹400</td><td>₹32</td><td>₹35</td><td>₹700</td></tr>
+              <tr data-vehicle="tempo-traveller"><td><span class="veh-name">Tempo Traveller 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹5,000</td><td>₹500</td><td>₹27</td><td>₹28</td><td>₹600</td></tr>
+              <tr data-vehicle="tempo-traveller"><td><span class="veh-name">Tempo Traveller Non-AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹3,800</td><td>₹450</td><td>₹17</td><td>₹18</td><td>₹500</td></tr>
+              <tr data-vehicle="tempo-traveller"><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 2+1 Layout</span></td><td>₹4,500</td><td>₹500</td><td>₹20</td><td>₹21</td><td>₹500</td></tr>
+              <tr data-vehicle="tempo-traveller"><td><span class="veh-name">Tempo Traveller AC 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,000</td><td>₹750</td><td>₹28</td><td>₹30</td><td>₹600</td></tr>
+              <tr data-vehicle="tempo-traveller"><td><span class="veh-name">Tempo Traveller AC 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹6,000</td><td>₹500</td><td>₹28</td><td>₹28</td><td>₹600</td></tr>
+              <tr data-vehicle="urbania"><td><span class="veh-name">Force Urbania 9 Seater</span><span class="veh-seat">9+1 · 1+1 Layout</span></td><td>₹9,500</td><td>₹400</td><td>₹42</td><td>₹42</td><td>₹700</td></tr>
+              <tr data-vehicle="urbania"><td><span class="veh-name">Force Urbania 10 Seater</span><span class="veh-seat">10+1 · 2+1 Layout</span></td><td>₹6,500</td><td>₹400</td><td>₹34</td><td>₹32</td><td>₹700</td></tr>
+              <tr data-vehicle="urbania"><td><span class="veh-name">Force Urbania 12 Seater</span><span class="veh-seat">12+1 · 1+1 Layout</span></td><td>₹7,500</td><td>₹400</td><td>₹40</td><td>₹40</td><td>₹700</td></tr>
+              <tr data-vehicle="urbania"><td><span class="veh-name">Force Urbania 16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>₹8,000</td><td>₹400</td><td>₹32</td><td>₹35</td><td>₹700</td></tr>
               <tr><td><span class="veh-name">16 Seater</span><span class="veh-seat">16+1 · 2+1 Layout</span></td><td>—</td><td>—</td><td>₹38</td><td>₹38</td><td>—</td></tr>
               <tr><td><span class="veh-name">12 Seater</span><span class="veh-seat">12+1 · 1+1 Configuration</span></td><td>—</td><td>—</td><td>₹45</td><td>₹45</td><td>—</td></tr>
             </tbody>
@@ -247,56 +248,7 @@
 
   <!-- TRIP PLANNER CARD -->
   <div class="planner-container" id="planner">
-    <div class="planner-card">
-      <h3>Plan Your Journey</h3>
-      <form class="planner-form" id="plannerForm">
-        <div>
-          <label>From</label>
-          <input type="text" value="Bengaluru" readonly>
-        </div>
-        <div>
-          <label>Destination</label>
-          <select id="destPlan">
-            <option>Where do you want to go?</option>
-            <option>Coorg</option>
-            <option>Chikmagalur</option>
-            <option>Gokarna</option>
-            <option>Goa</option>
-            <option>Kerala</option>
-            <option>Mysore</option>
-          </select>
-        </div>
-        <div>
-          <label>Travel Date</label>
-          <input type="date" id="travelDate">
-        </div>
-        <div>
-          <label>Travellers</label>
-          <input type="number" id="travellersPlan" placeholder="Number of people" min="1">
-        </div>
-        <div>
-          <label>Trip Type</label>
-          <select id="tripTypePlan">
-            <option>Select trip type</option>
-            <option>Weekend Escape</option>
-            <option>Adventure Trip</option>
-            <option>Beach Getaway</option>
-            <option>Hill Station</option>
-            <option>Group Holiday</option>
-            <option>Corporate Travel</option>
-          </select>
-        </div>
-        <div>
-          <label for="namePlan">Your Name</label>
-          <input type="text" id="namePlan" placeholder="Enter your name" maxlength="100">
-        </div>
-        <div>
-          <label for="phonePlan">Phone Number</label>
-          <input type="tel" id="phonePlan" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
-        </div>
-        <button type="submit" class="planner-cta">GET A QUOTE</button>
-      </form>
-    </div>
+    <div class="planner-card" data-trip-planner></div>
   </div>
 
   <!-- FEATURED JOURNEYS -->
@@ -546,27 +498,6 @@
       });
     });
 
-    // Trip planner "Get a Quote"
-    const plannerForm = document.getElementById('plannerForm');
-    plannerForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = plannerForm.querySelector('.planner-cta');
-      const saved = await submitEnquiry(btn, {
-        source: 'planner',
-        name: document.getElementById('namePlan').value,
-        phone: document.getElementById('phonePlan').value,
-        destination: selectValue(document.getElementById('destPlan')),
-        travel_date: document.getElementById('travelDate').value,
-        travellers: parseInt(document.getElementById('travellersPlan').value, 10),
-        trip_type: selectValue(document.getElementById('tripTypePlan'))
-      });
-      if (!saved) return;
-      const label = btn.textContent;
-      btn.textContent = 'REQUEST RECEIVED';
-      setTimeout(() => btn.textContent = label, 2200);
-      plannerForm.reset();
-    });
-
     // Fleet rate tabs
     document.querySelectorAll('.fleet-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -577,6 +508,23 @@
         document.getElementById('panel-' + target).classList.add('active');
       });
     });
+
+    // Navbar "Urbania" / "Tempo Traveller" links (index.html#urbania, #tempo-traveller):
+    // open the Tempo & Vans rates, scroll to them and briefly highlight that vehicle's rows
+    function showVehicleRates() {
+      const vehicle = location.hash.slice(1);
+      const rows = document.querySelectorAll(`#panel-vans tr[data-vehicle="${vehicle}"]`);
+      if (!rows.length) return;
+      document.querySelector('.fleet-tab[data-panel="vans"]').click();
+      const tabs = document.querySelector('.fleet-tabs');
+      const navHeight = document.getElementById('navbar').offsetHeight;
+      window.scrollTo({ top: tabs.getBoundingClientRect().top + window.scrollY - navHeight - 16, behavior: 'smooth' });
+      document.querySelectorAll('#panel-vans tr.rate-highlight').forEach(row => row.classList.remove('rate-highlight'));
+      void rows[0].offsetWidth; // restart the highlight animation on repeat clicks
+      rows.forEach(row => row.classList.add('rate-highlight'));
+    }
+    window.addEventListener('hashchange', showVehicleRates);
+    showVehicleRates();
 
     // Fleet card photo sliders (crossfade between images)
     document.querySelectorAll('[data-slider]').forEach(slider => {
