@@ -23,16 +23,6 @@ body {
 /* ===== Dark theme ===== */
 html[data-theme="dark"] body { background: #14161A; color: #F0F2F5; }
 
-html[data-theme="dark"] nav#navbar { background: #ffffff !important; border-bottom-color: rgba(5,5,5,0.08) !important; }
-
-html[data-theme="dark"] nav#navbar.scrolled { background: #ffffff !important; }
-
-html[data-theme="dark"] nav#navbar .nav-links a { color: #050505; }
-
-html[data-theme="dark"] nav#navbar .hamburger span { background: #050505; }
-
-html[data-theme="dark"] nav#navbar .theme-toggle { border-color: rgba(5,5,5,0.15); color: #050505; }
-
 html[data-theme="dark"] { color: #F0F2F5; }
 
 .theme-toggle {
@@ -42,7 +32,7 @@ html[data-theme="dark"] { color: #F0F2F5; }
   gap: 0.6rem;
   width: 40px; height: 40px; padding: 0;
   background: transparent;
-  border: 1px solid rgba(5,5,5,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
   color: inherit;
   border-radius: 50%;
   cursor: pointer;
@@ -55,11 +45,7 @@ html[data-theme="dark"] { color: #F0F2F5; }
 
 .theme-toggle-label { display: none; }
 
-html[data-theme="dark"] .theme-toggle { border-color: #333A45; }
-
-.theme-toggle:hover { background: rgba(0,0,0,0.05); }
-
-html[data-theme="dark"] .theme-toggle:hover { background: #1E222A; }
+.theme-toggle:hover { background: rgba(255,255,255,0.1); }
 
 html[data-theme="dark"] .nav-cta { color: #1a1a1a; }
 
@@ -99,22 +85,23 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.08);
-  transition: padding 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  /* Solid bar (after scrolling, or with the mobile menu open): dark grey, light text */
+  background: #2B2F36;
+  color: #F2F4F7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: padding 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 nav.scrolled {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
   padding: 0.7rem 2rem;
 }
 
 /* Transparent at the top of every page (backdrop per page is set in js/site.js);
-   turns white again once the page scrolls or the mobile menu opens.
-   !important beats the dark-mode rule that keeps the navbar white. */
+   turns dark grey once the page scrolls or the mobile menu opens */
 nav#navbar.nav-transparent:not(.scrolled):not(.menu-open) {
-  background: transparent !important;
-  border-bottom-color: transparent !important;
+  background: transparent;
+  border-bottom-color: transparent;
 }
 
 /* The logo's white lettering needs a soft shadow to read over a light photo */
@@ -122,28 +109,24 @@ nav#navbar.nav-transparent:not(.scrolled):not(.menu-open) .logo img {
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
 }
 
-/* White menu text and icons until scrolled: over a dark photo (About, Contact),
-   or over the dark page background in dark mode (Fleet, Services) */
-nav#navbar.nav-on-dark:not(.scrolled):not(.menu-open) .hamburger span,
-html[data-theme="dark"] nav#navbar.nav-on-page:not(.scrolled):not(.menu-open) .hamburger span {
-  background: #ffffff;
-}
-
+/* Over a photo (Home, About, Contact) the white menu text gets a soft shadow */
 @media (min-width: 901px) {
-  nav#navbar.nav-on-dark:not(.scrolled) .nav-links a:not(.nav-menu-cta),
-  html[data-theme="dark"] nav#navbar.nav-on-page:not(.scrolled) .nav-links a:not(.nav-menu-cta) {
-    color: #ffffff;
+  nav#navbar.nav-on-dark:not(.scrolled) .nav-links a:not(.nav-menu-cta) {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
-  nav#navbar.nav-on-dark:not(.scrolled) .theme-toggle,
-  html[data-theme="dark"] nav#navbar.nav-on-page:not(.scrolled) .theme-toggle {
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.45);
-  }
-  nav#navbar.nav-on-dark:not(.scrolled) .theme-toggle:hover,
-  html[data-theme="dark"] nav#navbar.nav-on-page:not(.scrolled) .theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.12);
-  }
+}
+
+/* Over the plain white page (Fleet, Services in light mode) the transparent bar needs dark text */
+html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-open) {
+  color: #050505;
+}
+
+html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-open) .theme-toggle {
+  border-color: rgba(5, 5, 5, 0.18);
+}
+
+html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-open) .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -189,10 +172,6 @@ html[data-theme="dark"] nav#navbar.nav-on-page:not(.scrolled):not(.menu-open) .h
   width: 100%;
 }
 
-nav.scrolled .nav-links a {
-  color: #050505;
-}
-
 .nav-cta {
   background: #F5B301;
   color: #1a1a1a;
@@ -219,6 +198,11 @@ nav.scrolled .nav-links a {
   flex-direction: column;
   cursor: pointer;
   gap: 6px;
+  /* it's a <button>: take the navbar's text colour, no default button box */
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 6px 2px;
 }
 
 /* Only shown inside the mobile dropdown menu */
@@ -229,7 +213,7 @@ nav.scrolled .nav-links a {
 .hamburger span {
   width: 24px;
   height: 2px;
-  background: #050505;
+  background: currentColor;
   transition: all 0.3s ease;
 }
 
@@ -243,10 +227,10 @@ nav.scrolled .nav-links a {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: white;
+    background: #2B2F36;
     padding: 2rem;
     gap: 1rem;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
   }
   .theme-toggle {
     width: 100%; height: auto; border-radius: 8px;
@@ -381,10 +365,10 @@ footer {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: white;
+    background: #2B2F36;
     padding: 2rem;
     gap: 1rem;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
   }
   .nav-links.active {
     display: flex;
