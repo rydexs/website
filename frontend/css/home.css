@@ -303,23 +303,56 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   margin-top: 3rem;
 }
 
-@media (max-width: 768px) {
-  .hero-content {
-    margin-top: 1.5rem;
+/* Short screens (phones held sideways): let the hero grow so the buttons aren't cut off */
+@media (max-height: 560px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
   }
-  /* Tall phone screens would crop the video to a close-up of the van, so show the
-     whole frame (slightly wider than the screen) centred on the white backdrop,
-     with its top and bottom edges faded so the grey studio part doesn't show a hard band */
+  .hero-lower {
+    padding-top: 110px;
+  }
+}
+
+/* Phones and portrait tablets: stack the van above the text instead of hiding it behind
+   the heading. --van-top is just below the navbar; --van-h is the video's height. */
+@media (max-width: 768px) {
+  .hero {
+    --van-top: 84px;
+    --van-w: 118vw;
+    --van-h: calc(var(--van-w) * 9 / 16);
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+  /* whole 16:9 frame, slightly wider than the screen, with soft top/bottom edges */
   .hero-video {
     inset: auto;
-    top: 50%;
+    top: var(--van-top);
     left: 50%;
-    width: 125vw;
+    width: var(--van-w);
     height: auto;
     aspect-ratio: 16 / 9;
-    transform: translate(-50%, -50%);
-    -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
-    mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+    transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
+    mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
+  }
+  /* text starts right under the van */
+  .hero-lower {
+    align-items: flex-start;
+    padding-top: calc(var(--van-top) + var(--van-h) - 1rem);
+  }
+  .hero-content {
+    margin-top: 0;
+  }
+  /* shade only the navbar strip and the text area; keep the van itself bright */
+  .hero::before {
+    background: linear-gradient(180deg,
+      rgba(5, 5, 5, 0.6) 0,
+      rgba(5, 5, 5, 0) 96px,
+      rgba(5, 5, 5, 0) calc(var(--van-top) + var(--van-h) * 0.7),
+      rgba(5, 5, 5, 0.78) calc(var(--van-top) + var(--van-h) + 3rem),
+      rgba(5, 5, 5, 0.92) 100%);
   }
 }
 
