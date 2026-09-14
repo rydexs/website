@@ -661,6 +661,12 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   position: relative;
 }
 
+/* iOS/Safari renders datetime-local's formatted value at an intrinsic width that
+   ignores width:100%, overflowing the field on narrow screens; clip it to the field. */
+.trip-input:has(input[type="datetime-local"]) {
+  overflow: hidden;
+}
+
 .trip-input svg {
   position: absolute;
   left: 0.85rem;
@@ -752,6 +758,7 @@ html[data-theme="dark"] .planner-confirm { color: #7be3a3; }
   .planner-grid { grid-template-columns: 1fr; }
   .trip-tab { font-size: 0.85rem; }
   .trip-toggle button { padding: 0.5rem 1rem; font-size: 0.9rem; }
+  .trip-input input[type="datetime-local"] { font-size: 0.8rem; }
 }
 
 /* ==================== SECTION SPACING ==================== */
