@@ -20,13 +20,13 @@
   // What shows through decides the menu text colour:
   //   'light' photo -> dark text, 'dark' photo -> white text,
   //   'page' (plain page background) -> dark text, or white text in dark mode
-  const NAV_BACKDROP = { index: 'dark', about: 'dark', contact: 'dark', fleet: 'page', services: 'page' };
+  const NAV_BACKDROP = { index: 'dark', urbania: 'page', tempotraveller: 'page', about: 'dark', contact: 'dark', fleet: 'page', services: 'page' };
   const navClass = 'nav-transparent' + ({ dark: ' nav-on-dark', page: ' nav-on-page' }[NAV_BACKDROP[page]] || '');
 
   const MENU = [
     ['index', 'index.html', 'Home'],
-    ['', 'index.html#urbania', 'Urbania'],               // Tempo & Vans rates on Home, Urbania rows highlighted
-    ['', 'index.html#tempo-traveller', 'Tempo Traveller'], // same table, Tempo Traveller rows highlighted
+    ['urbania', 'urbania.html', 'Urbania'],
+    ['tempotraveller', 'tempotraveller.html', 'Tempo Traveller'],
     ['fleet', 'fleet.html', 'Fleet'],
     ['services', 'services.html', 'Services'],
     ['', 'index.html#packages', 'Packages'],
@@ -36,7 +36,7 @@
   ];
 
   const FOOTER_COLUMNS = [
-    ['Explore', [['Fleet', 'fleet.html'], ['Services', 'services.html'], ['Packages', 'index.html#packages'], ['Experiences', 'index.html#experiences'], ['Gallery', 'index.html#gallery']]],
+    ['Explore', [['Urbania', 'urbania.html'], ['Tempo Traveller', 'tempotraveller.html'], ['Fleet', 'fleet.html'], ['Services', 'services.html'], ['Packages', 'index.html#packages'], ['Experiences', 'index.html#experiences'], ['Gallery', 'index.html#gallery']]],
     ['Company', [['About Us', 'about.html'], ['Contact', 'contact.html'], ['Careers', '#'], ['Blog', '#']]],
     ['Support', [['Get a Quote', 'contact.html#planner'], ['FAQ', '#'], ['Privacy Policy', '#'], ['Terms &amp; Conditions', '#']]]
   ];
