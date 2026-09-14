@@ -248,7 +248,8 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   z-index: 1;
 }
 
-/* White RYDEXS-branded Urbania video (images/white-urbania.mp4, 16:9) filling the hero */
+/* White RYDEXS-branded Urbania video (images/white-urbania-hd.mp4, 1920x1080, 16:9) filling the hero.
+   Made from IMG_1009.MOV: rotated upright, black opening frames trimmed, lightly sharpened, H.264. */
 .hero-video {
   position: absolute;
   inset: 0;
