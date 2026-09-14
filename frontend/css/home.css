@@ -9,16 +9,22 @@ html[data-theme="dark"] [style*="background:#fff"] { background: #1E222A !import
 
 html[data-theme="dark"] .card,
 html[data-theme="dark"] .service-card,
-html[data-theme="dark"] .testimonial-card,
+html[data-theme="dark"] .testimonial,
 html[data-theme="dark"] .stat-card,
 html[data-theme="dark"] .feature-card,
-html[data-theme="dark"] .value-card { background: #1E222A !important; border-color: #333A45 !important; color: #F0F2F5; }
+html[data-theme="dark"] .value-card,
+html[data-theme="dark"] .contact-card { background: #1E222A !important; border-color: #333A45 !important; color: #F0F2F5; }
+
+/* ---- Contact page ---- */
+html[data-theme="dark"] .contact-item { border-bottom-color: #333A45; }
+
+html[data-theme="dark"] .contact-note { background: rgba(245, 179, 1, 0.12); color: #F0F2F5; }
 
 /* Image-backed cards keep their inline photo; just adjust border/text in dark */
 html[data-theme="dark"] .destination-card,
 html[data-theme="dark"] .package-card,
 html[data-theme="dark"] .experience-card,
-html[data-theme="dark"] .fleet-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+html[data-theme="dark"] .fleet-card { background-color: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 
 html[data-theme="dark"] .fleet-content { background: #1E222A; }
 

@@ -462,7 +462,7 @@ button:focus-visible {
 .occasion-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(150deg, #1c1c1c, #050505);
+  background: linear-gradient(150deg, #1c1c1c, #050505) center/cover no-repeat;
   transition: transform .5s ease;
 }
 
