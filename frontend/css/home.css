@@ -258,6 +258,20 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   object-fit: cover;
   object-position: center;
   transition: opacity 0.35s ease;
+  /* background video: taps go to the page, never to the video */
+  pointer-events: none;
+}
+
+/* Hide the play button / controls iPhones and some Android browsers draw over the video */
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-overlay-play-button,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 0 !important;
 }
 
 /* Brief fade to the backdrop while the video jumps from its last frame back to the first */

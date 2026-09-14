@@ -19,7 +19,7 @@
   <div class="hero-scroll-region" id="heroScrollRegion">
   <section class="hero" id="home">
     <div class="hero-bg">
-      <video class="hero-video" src="images/white-urbania-hd.mp4" poster="images/white-urbania-hd-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <video class="hero-video" src="images/white-urbania-hd.mp4" poster="images/white-urbania-hd-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" tabindex="-1" aria-hidden="true"></video>
     </div>
 
 
@@ -359,27 +359,40 @@
   <script>RYDEXS.footer();</script>
 
   <script>
-    // Hero rotation video: still poster for reduced-motion visitors, otherwise fade to white
-    // around the loop point so the jump from the last frame to the first isn't visible
+    // Hero rotation video: always plays, muted, on a loop (no play button on phones)
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        heroVideo.removeAttribute('autoplay');
-        heroVideo.pause();
-        heroVideo.currentTime = 0;
-      } else {
-        const FADE_SECONDS = 0.4;
-        let reachedEnd = false; // don't hide the poster/first play while the video is still starting
-        const watchLoop = () => {
-          if (heroVideo.duration) {
-            const t = heroVideo.currentTime;
-            if (t > heroVideo.duration - FADE_SECONDS) reachedEnd = true;
-            heroVideo.classList.toggle('is-looping', reachedEnd && (t > heroVideo.duration - FADE_SECONDS || t < 0.12));
-          }
-          requestAnimationFrame(watchLoop);
-        };
+      // iOS only autoplays videos that are muted and inline, so set both again from script
+      heroVideo.muted = true;
+      heroVideo.defaultMuted = true;
+      heroVideo.playsInline = true;
+
+      const startVideo = () => {
+        if (!heroVideo.paused) return;
+        const attempt = heroVideo.play();
+        if (attempt) attempt.catch(() => {}); // blocked (e.g. iPhone Low Power Mode): retried below
+      };
+      startVideo();
+      heroVideo.addEventListener('canplay', startVideo);
+      // If the phone blocked autoplay, start on the visitor's first touch, tap or scroll
+      ['touchstart', 'click', 'scroll', 'keydown'].forEach(type =>
+        window.addEventListener(type, startVideo, { passive: true }));
+      // Resume if the browser paused it (tab switched, app backgrounded, etc.)
+      heroVideo.addEventListener('pause', () => setTimeout(startVideo, 300));
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) startVideo(); });
+
+      // Fade to the backdrop around the loop point so the jump from last frame to first isn't visible
+      const FADE_SECONDS = 0.4;
+      let reachedEnd = false; // don't hide the poster/first play while the video is still starting
+      const watchLoop = () => {
+        if (heroVideo.duration) {
+          const t = heroVideo.currentTime;
+          if (t > heroVideo.duration - FADE_SECONDS) reachedEnd = true;
+          heroVideo.classList.toggle('is-looping', reachedEnd && (t > heroVideo.duration - FADE_SECONDS || t < 0.12));
+        }
         requestAnimationFrame(watchLoop);
-      }
+      };
+      requestAnimationFrame(watchLoop);
     }
 
     // "Plan your trip" style buttons on this page scroll to the trip planner card
