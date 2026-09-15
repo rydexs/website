@@ -346,20 +346,21 @@ footer {
 }
 
 .footer-social a {
+  width: 40px;
+  height: 40px;
+  background: rgba(245, 179, 1, 0.2);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #F5B301;
   text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.footer-social a img {
-  width: 32px;
-  height: 32px;
+  transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
-  transform: translateY(-3px);
+  background: #F5B301;
+  color: #1a1a1a;
 }
 
 @media (max-width: 768px) {

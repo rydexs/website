@@ -9,22 +9,16 @@ html[data-theme="dark"] [style*="background:#fff"] { background: #1E222A !import
 
 html[data-theme="dark"] .card,
 html[data-theme="dark"] .service-card,
-html[data-theme="dark"] .testimonial,
+html[data-theme="dark"] .testimonial-card,
 html[data-theme="dark"] .stat-card,
 html[data-theme="dark"] .feature-card,
-html[data-theme="dark"] .value-card,
-html[data-theme="dark"] .contact-card { background: #1E222A !important; border-color: #333A45 !important; color: #F0F2F5; }
-
-/* ---- Contact page ---- */
-html[data-theme="dark"] .contact-item { border-bottom-color: #333A45; }
-
-html[data-theme="dark"] .contact-note { background: rgba(245, 179, 1, 0.12); color: #F0F2F5; }
+html[data-theme="dark"] .value-card { background: #1E222A !important; border-color: #333A45 !important; color: #F0F2F5; }
 
 /* Image-backed cards keep their inline photo; just adjust border/text in dark */
 html[data-theme="dark"] .destination-card,
 html[data-theme="dark"] .package-card,
 html[data-theme="dark"] .experience-card,
-html[data-theme="dark"] .fleet-card { background-color: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+html[data-theme="dark"] .fleet-card { background: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 
 html[data-theme="dark"] .fleet-content { background: #1E222A; }
 
@@ -256,16 +250,28 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
 
 /* White RYDEXS-branded Urbania video (images/white-urbania-hd.mp4, 1920x1080, 16:9) filling the hero.
    Made from IMG_1009.MOV: rotated upright, black opening frames trimmed, lightly sharpened, H.264. */
-.hero-video {
+.hero-video,
+.hero-poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: opacity 0.35s ease;
-  /* background video: taps go to the page, never to the video */
+  /* background media: taps go to the page, never to the video */
   pointer-events: none;
+}
+
+/* The video stays invisible until it is really playing, so a phone that refuses to autoplay
+   (e.g. iPhone Low Power Mode) never shows its play button — the still image (.hero-poster)
+   underneath shows instead. js in index.html adds .is-playing. */
+.hero-video {
+  opacity: 0.001;
+  transition: opacity 0.35s ease;
+}
+
+.hero-video.is-playing {
+  opacity: 1;
 }
 
 /* Hide the play button / controls iPhones and some Android browsers draw over the video */
@@ -281,7 +287,7 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
 }
 
 /* Brief fade to the backdrop while the video jumps from its last frame back to the first */
-.hero-video.is-looping {
+.hero-video.is-playing.is-looping {
   opacity: 0;
 }
 
@@ -325,7 +331,8 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
     min-height: 100svh;
   }
   /* whole 16:9 frame, slightly wider than the screen, with soft top/bottom edges */
-  .hero-video {
+  .hero-video,
+  .hero-poster {
     inset: auto;
     top: var(--van-top);
     left: 50%;
@@ -336,10 +343,10 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
     -webkit-mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
     mask-image: linear-gradient(transparent, #000 10%, #000 88%, transparent);
   }
-  /* text starts right under the van */
+  /* text starts just under the van, tucked slightly into its faded bottom edge */
   .hero-lower {
     align-items: flex-start;
-    padding-top: calc(var(--van-top) + var(--van-h) - 1rem);
+    padding-top: calc(var(--van-top) + var(--van-h) - 3rem);
   }
   .hero-content {
     margin-top: 0;
@@ -349,8 +356,8 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
     background: linear-gradient(180deg,
       rgba(5, 5, 5, 0.6) 0,
       rgba(5, 5, 5, 0) 96px,
-      rgba(5, 5, 5, 0) calc(var(--van-top) + var(--van-h) * 0.7),
-      rgba(5, 5, 5, 0.78) calc(var(--van-top) + var(--van-h) + 3rem),
+      rgba(5, 5, 5, 0) calc(var(--van-top) + var(--van-h) * 0.6),
+      rgba(5, 5, 5, 0.78) calc(var(--van-top) + var(--van-h) + 1rem),
       rgba(5, 5, 5, 0.92) 100%);
   }
 }
@@ -661,12 +668,6 @@ html[data-theme="dark"] .book-btn { color: #1a1a1a; }
   position: relative;
 }
 
-/* iOS/Safari renders datetime-local's formatted value at an intrinsic width that
-   ignores width:100%, overflowing the field on narrow screens; clip it to the field. */
-.trip-input:has(input[type="datetime-local"]) {
-  overflow: hidden;
-}
-
 .trip-input svg {
   position: absolute;
   left: 0.85rem;
@@ -758,7 +759,6 @@ html[data-theme="dark"] .planner-confirm { color: #7be3a3; }
   .planner-grid { grid-template-columns: 1fr; }
   .trip-tab { font-size: 0.85rem; }
   .trip-toggle button { padding: 0.5rem 1rem; font-size: 0.9rem; }
-  .trip-input input[type="datetime-local"] { font-size: 0.8rem; }
 }
 
 /* ==================== SECTION SPACING ==================== */

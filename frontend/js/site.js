@@ -96,9 +96,9 @@
     <div class="footer-bottom">
       <p>Bengaluru, Karnataka, India &middot; <a href="tel:+91${PHONE}" style="color:inherit;">${PHONE_DISPLAY}</a></p>
       <div class="footer-social">
-        <a href="#" title="Instagram" aria-label="Instagram"><img src="instagram-2-1-logo-svgrepo-com.svg" width="32" height="32" alt="" loading="lazy"></a>
-        <a href="#" title="LinkedIn" aria-label="LinkedIn"><img src="linkedin-svgrepo-com.svg" width="32" height="32" alt="" loading="lazy"></a>
-        <a href="#" title="Facebook" aria-label="Facebook"><img src="facebook-color-svgrepo-com.svg" width="32" height="32" alt="" loading="lazy"></a>
+        <a href="#" title="Instagram">IG</a>
+        <a href="${WHATSAPP}" target="_blank" rel="noopener" title="WhatsApp">WA</a>
+        <a href="#" title="Facebook">f</a>
       </div>
       <p>&copy; ${new Date().getFullYear()} RYDEXS. All rights reserved.</p>
     </div>
