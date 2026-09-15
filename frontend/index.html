@@ -19,8 +19,7 @@
   <div class="hero-scroll-region" id="heroScrollRegion">
   <section class="hero" id="home">
     <div class="hero-bg">
-      <img class="hero-poster" src="images/white-urbania-hd-poster.jpg" alt="" aria-hidden="true">
-      <video class="hero-video" src="images/white-urbania-hd.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" tabindex="-1" aria-hidden="true"></video>
+      <video class="hero-video" src="images/white-urbania-hd.mp4" poster="images/white-urbania-hd-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" tabindex="-1" aria-hidden="true"></video>
     </div>
 
 
@@ -52,14 +51,14 @@
 
       <div class="fleet-grid">
         <div class="fleet-card">
-          <div class="fleet-card-img" style="background-image: url('images/fleet/rydexs-honda-city.jpg'); background-color: #fff;" role="img" aria-label="RYDEXS Honda City"></div>
+          <div class="fleet-card-img" style="background-image: url('images/rydexs-urbania.jpg'); background-color: #fff;" role="img" aria-label="RYDEXS Force Urbania"></div>
           <div class="fleet-content">
-            <span class="fleet-tag">Sedan</span>
-            <div class="fleet-name">Comfort Sedans</div>
-            <p class="fleet-desc">Smooth, fuel-efficient rides ideal for couples and small families exploring nearby getaways.</p>
+            <span class="fleet-tag">Van</span>
+            <div class="fleet-name">Urbania</div>
+            <p class="fleet-desc">Spacious, European-styled luxury van with a smooth ride and premium captain seating — ideal for group holidays and corporate travel.</p>
             <div class="fleet-specs">
-              <span>4 Seats</span>
-              <span>2 Bags</span>
+              <span>13 Seats</span>
+              <span>6 Bags</span>
               <span>AC</span>
             </div>
           </div>
@@ -373,9 +372,6 @@
         const attempt = heroVideo.play();
         if (attempt) attempt.catch(() => {}); // blocked (e.g. iPhone Low Power Mode): retried below
       };
-      // only reveal the video once frames are really playing (no native play button ever shows)
-      heroVideo.addEventListener('playing', () => heroVideo.classList.add('is-playing'));
-      heroVideo.addEventListener('pause', () => heroVideo.classList.remove('is-playing'));
       startVideo();
       heroVideo.addEventListener('canplay', startVideo);
       // If the phone blocked autoplay, start on the visitor's first touch, tap or scroll
