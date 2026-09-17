@@ -48,7 +48,7 @@
 
   function render(card) {
     card.innerHTML = `
-      <h3>Plan Your Journey</h3>
+      <h3>${card.dataset.title || 'Plan Your Journey'}</h3>
       <form class="trip-planner" novalidate>
         <div class="trip-tabs" role="tablist" aria-label="Trip type">
           <button type="button" class="trip-tab" role="tab" data-trip="outstation" aria-selected="true">${svg('outstation', 24)}<span>Outstation</span></button>
