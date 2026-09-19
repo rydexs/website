@@ -5,10 +5,24 @@
 //   <head> ... <script src="js/supabase.js"></script><script src="js/site.js"></script></head>
 //   <body><script>RYDEXS.header();</script> ...page content... <script>RYDEXS.footer();</script></body>
 (function () {
-  const PHONE = '9483607072';
-  const PHONE_DISPLAY = '+91 94836 07072';
+  const PHONE = '9964299742';
+  const PHONE_DISPLAY = '+91 99642 99742';
+  const EMAIL = 'support@rydexs.in';
   const WHATSAPP = 'https://wa.me/91' + PHONE;
   const LOGO = 'a_clean_high_contrast_modern_vector_logo_style_g.png';
+  const ADDRESS = '#126, 8th Cross, Telecom Layout, HRBR Layout 5th Block, Nagavara, Bangalore 560043';
+  const MAP_EMBED_SRC = 'https://www.google.com/maps?q=' + encodeURIComponent(ADDRESS) + '&output=embed';
+
+  // Warm up the connection to Google's map domains now, so that whenever the
+  // footer map actually loads (see loadFooterMap below), it isn't also paying
+  // for DNS/TLS setup on top of the iframe's own heavy payload.
+  ['https://www.google.com', 'https://maps.gstatic.com'].forEach((href) => {
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = href;
+    link.crossOrigin = '';
+    document.head.appendChild(link);
+  });
 
   // "fleet.html", "/fleet" (clean URLs) and "/" all resolve to a page id
   const page = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
@@ -38,7 +52,7 @@
   const FOOTER_COLUMNS = [
     ['Explore', [['Urbania', 'urbania.html'], ['Tempo Traveller', 'tempotraveller.html'], ['Fleet', 'fleet.html'], ['Services', 'services.html'], ['Packages', 'index.html#packages'], ['Experiences', 'index.html#experiences'], ['Gallery', 'index.html#gallery']]],
     ['Company', [['About Us', 'about.html'], ['Contact', 'contact.html'], ['Careers', '#'], ['Blog', '#']]],
-    ['Support', [['Get a Quote', 'contact.html#planner'], ['FAQ', '#'], ['Privacy Policy', '#'], ['Terms &amp; Conditions', '#']]]
+    ['Support', [['Get a Quote', 'contact.html#planner'], ['FAQ', '#'], ['Privacy Policy', 'privacy.html'], ['Terms &amp; Conditions', 'terms.html']]]
   ];
 
   // ---- Dark mode: applied immediately (this file loads in <head>) so the page never flashes ----
@@ -92,9 +106,16 @@
         <img src="${LOGO}" alt="RYDEXS" class="footer-logo" loading="lazy">
         <p class="footer-tagline">Your journey, our priority. Crafting unforgettable travel experiences from Bengaluru.</p>
       </div>${columns}
+      <div class="footer-section footer-map-section">
+        <h4>Find Us</h4>
+        <div class="footer-map" id="footerMap" data-map-src="${MAP_EMBED_SRC}">
+          <span class="footer-map-pin" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        </div>
+        <p class="footer-address">${ADDRESS}</p>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p>Bengaluru, Karnataka, India &middot; <a href="tel:+91${PHONE}" style="color:inherit;">${PHONE_DISPLAY}</a></p>
+      <p>Bengaluru, Karnataka, India &middot; <a href="tel:+91${PHONE}" style="color:inherit;">${PHONE_DISPLAY}</a> &middot; <a href="mailto:${EMAIL}" style="color:inherit;">${EMAIL}</a></p>
       <div class="footer-social">
         <a href="https://www.instagram.com/rydexs.in/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><img src="instagram-2-1-logo-svgrepo-com.svg" width="32" height="32" alt="" loading="lazy"></a>
         <a href="#" title="LinkedIn" aria-label="LinkedIn"><img src="linkedin-svgrepo-com.svg" width="32" height="32" alt="" loading="lazy"></a>
@@ -149,11 +170,46 @@
     wireLayout();
   }
 
+  // The Google Maps embed is heavy (loads Google's full Maps app, not a
+  // lightweight static image), so it's only inserted into the DOM — and only
+  // then starts downloading — once it's about to scroll into view.
+  function loadFooterMapWhenNear() {
+    const mapEl = document.getElementById('footerMap');
+    if (!mapEl) return;
+
+    const load = () => {
+      if (mapEl.querySelector('iframe')) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = mapEl.dataset.mapSrc;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.title = 'RYDEXS location on Google Maps';
+      mapEl.innerHTML = '';
+      mapEl.appendChild(iframe);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            load();
+            io.disconnect();
+          }
+        });
+      }, { rootMargin: '300px 0px' });
+      io.observe(mapEl);
+    } else {
+      load();
+    }
+  }
+
   function wireLayout() {
     const navbar = document.getElementById('navbar');
     const navLinks = document.getElementById('navLinks');
     const hamburger = document.getElementById('hamburger');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    loadFooterMapWhenNear();
 
     document.getElementById('themeToggle').addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
