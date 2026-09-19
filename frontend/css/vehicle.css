@@ -168,7 +168,8 @@ h1.section-label { font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: #d99a00; }
 .rate-table tbody td:not(:first-child) { text-align: center; font-weight: 600; }
 .rate-table tbody tr:nth-child(even) { background: #fafafa; }
 .rate-table tbody tr:hover { background: #fff7e6; }
-.rate-table .veh-name { font-weight: 600; color: #1a1a1a; }
+.rate-table .veh-name { display: block; font-weight: 600; color: #1a1a1a; }
+.rate-table .veh-seat { display: block; font-size: 0.78rem; color: #888; font-weight: 500; margin-top: 2px; }
 .rate-note { margin-top: 1.5rem; font-size: 0.85rem; line-height: 1.7; opacity: 0.7; }
 .rate-scroll-hint { display: none; font-size: 0.8rem; opacity: 0.6; margin: 0 0 0.6rem; font-style: italic; }
 
@@ -202,6 +203,7 @@ html[data-theme="dark"] .rate-table tbody td { color: #d7dbe0; border-bottom-col
 html[data-theme="dark"] .rate-table tbody tr:nth-child(even) { background: #1A1D23; }
 html[data-theme="dark"] .rate-table tbody tr:hover { background: #2B303A; }
 html[data-theme="dark"] .rate-table .veh-name { color: #F0F2F5; }
+html[data-theme="dark"] .rate-table .veh-seat { color: #9aa2ad; }
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 860px) {

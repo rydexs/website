@@ -23,10 +23,16 @@ html[data-theme="dark"] .contact-note { background: rgba(245, 179, 1, 0.12); col
 /* Image-backed cards keep their inline photo; just adjust border/text in dark */
 html[data-theme="dark"] .destination-card,
 html[data-theme="dark"] .package-card,
-html[data-theme="dark"] .experience-card,
-html[data-theme="dark"] .fleet-card { background-color: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+html[data-theme="dark"] .experience-card { background-color: #1E222A; border: 1px solid #333A45; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 
-html[data-theme="dark"] .fleet-content { background: #1E222A; }
+/* Fleet cards: frosted-glass content panel below the photo */
+html[data-theme="dark"] .fleet-card { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
+
+html[data-theme="dark"] .fleet-content {
+  background: rgba(30, 34, 42, 0.55);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
 
 html[data-theme="dark"] .fleet-name { color: #F0F2F5; }
 
@@ -43,8 +49,14 @@ html[data-theme="dark"] .corporate-card h4 { color: #F0F2F5; }
 
 html[data-theme="dark"] .corporate-card p { color: #C7CDD6; opacity: 1; }
 
-/* ---- Curated Journey / package cards ---- */
-html[data-theme="dark"] .journey-card { background: #1E222A; border: 1px solid #333A45; }
+/* ---- Curated Journey / package cards: frosted-glass content panel ---- */
+html[data-theme="dark"] .journey-card { border: 1px solid #333A45; }
+
+html[data-theme="dark"] .journey-body {
+  background: rgba(30, 34, 42, 0.55);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
 
 html[data-theme="dark"] .journey-title { color: #F0F2F5; }
 
@@ -900,7 +912,6 @@ section.light-bg {
 
 .fleet-card {
   position: relative;
-  background: #ffffff;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -952,7 +963,11 @@ section.light-bg {
 }
 
 .fleet-content {
+  position: relative;
   padding: 1.75rem 2rem 2rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
 
 .fleet-tag {
@@ -1086,7 +1101,7 @@ section.light-bg {
 }
 
 .journey-card {
-  background: white;
+  position: relative;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -1110,7 +1125,11 @@ section.light-bg {
 }
 
 .journey-body {
+  position: relative;
   padding: 2rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
 
 .journey-meta {

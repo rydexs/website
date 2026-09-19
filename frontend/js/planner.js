@@ -9,6 +9,7 @@
   const DESTINATIONS = ['Coorg', 'Chikkamagaluru', 'Ooty', 'Mysuru', 'Gokarna', 'Goa', 'Kerala', 'Hampi', 'Wayanad',
     'Pondicherry', 'Tirupati', 'Chennai', 'Hyderabad', 'Kodaikanal', 'Munnar', 'Dharmasthala', 'Murudeshwar'];
   const PACKAGES = ['4 Hr / 40 Km', '8 Hr / 80 Km', '12 Hr / 120 Km'];
+  const VEHICLE_TYPES = ['Urbania', 'Sedan', 'SUVs & MPVs', 'Premium', 'Luxury', 'Vans'];
   const AIRPORTS = [
     'Kempegowda International Airport, Bengaluru (BLR)',
     'Mysuru Airport (MYQ)',
@@ -87,6 +88,7 @@
         </fieldset>
 
         <div class="planner-grid trip-contact">
+          ${field('tpVehicle', 'Vehicle type', `<select id="tpVehicle" name="vehicleType"><option value="">Any / Not sure</option>${options(VEHICLE_TYPES)}</select>`, { full: true })}
           ${field('tpTravellers', 'Travellers', `<input id="tpTravellers" name="travellers" type="number" min="1" max="500" placeholder="Number of people">`)}
           ${field('tpName', 'Your name', `<input id="tpName" name="name" type="text" placeholder="Enter your name" maxlength="100">`)}
           ${field('tpPhone', 'Phone number', `<input id="tpPhone" name="phone" type="tel" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>`, { full: true })}
@@ -157,25 +159,26 @@
 
       const v = name => (form.querySelector(`.trip-panel:not([hidden]) [name="${name}"], .trip-contact [name="${name}"]`) || {}).value || '';
       const pickup = v('pickup');
+      const vehicle = v('vehicleType') || 'Any / Not sure';
       let data;
       if (trip === 'outstation') {
         data = {
           trip_type: `Outstation · ${way === 'round' ? 'Round trip' : 'One way'}`,
           destination: v('to'),
           message: [`From: ${v('from')}`, `To: ${v('to')}`, `Pickup: ${readable(pickup)}`,
-            way === 'round' ? `Return: ${readable(returnInput.value)}` : 'One way'].join('\n')
+            way === 'round' ? `Return: ${readable(returnInput.value)}` : 'One way', `Vehicle: ${vehicle}`].join('\n')
         };
       } else if (trip === 'local') {
         data = {
           trip_type: `Local · ${v('package')}`,
           destination: v('city'),
-          message: [`City: ${v('city')}`, `Package: ${v('package')}`, `Pickup: ${readable(pickup)}`].join('\n')
+          message: [`City: ${v('city')}`, `Package: ${v('package')}`, `Pickup: ${readable(pickup)}`, `Vehicle: ${vehicle}`].join('\n')
         };
       } else {
         data = {
           trip_type: `Airport · ${v('airportWay')}`,
           destination: v('airport'),
-          message: [`${v('airportWay')}`, `City: ${v('city')}`, `Airport: ${v('airport')}`, `Pickup: ${readable(pickup)}`].join('\n')
+          message: [`${v('airportWay')}`, `City: ${v('city')}`, `Airport: ${v('airport')}`, `Pickup: ${readable(pickup)}`, `Vehicle: ${vehicle}`].join('\n')
         };
       }
 
@@ -190,6 +193,7 @@
       if (!saved) return;
       confirm.hidden = false;
       form.querySelectorAll('.trip-contact input, #tpTo').forEach(input => { input.value = ''; });
+      form.querySelector('#tpVehicle').value = '';
       setDefaults();
     });
 
