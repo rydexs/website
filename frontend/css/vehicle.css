@@ -236,7 +236,7 @@ h1.section-label { font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: #d99a00; }
 .rate-table tbody tr:nth-child(even) { background: #fafafa; }
 .rate-table tbody tr:hover { background: #fff7e6; }
 .rate-table .veh-name { display: block; font-weight: 600; color: #1a1a1a; }
-.rate-table .veh-seat { display: block; font-size: 0.78rem; color: #888; font-weight: 500; margin-top: 2px; }
+.rate-table .veh-seat { display: block; font-size: 0.78rem; color: #2D6CDF; font-weight: 500; margin-top: 2px; }
 .rate-note { margin-top: 1.5rem; font-size: 0.85rem; line-height: 1.7; opacity: 0.7; }
 .rate-scroll-hint { display: none; font-size: 0.8rem; opacity: 0.6; margin: 0 0 0.6rem; font-style: italic; }
 
@@ -247,7 +247,7 @@ h1.section-label { font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: #d99a00; }
 .gallery-groups { display: flex; flex-direction: column; gap: 2.25rem; margin-top: 1rem; }
 .gallery-group-title { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.9rem; }
 .gallery-group-title .veh-name { font-weight: 700; font-size: 1.15rem; color: #1a1a1a; }
-.gallery-group-title .veh-seat { font-size: 0.85rem; color: #888; }
+.gallery-group-title .veh-seat { font-size: 0.85rem; color: #2D6CDF; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
 .gallery-grid .g-item { height: 260px; border-radius: 8px; overflow: hidden; background: #e9e9e9; position: relative; }
 .gallery-grid .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
@@ -276,7 +276,7 @@ html[data-theme="dark"] .gallery-grid .g-item.g-item--contain { background: #1E2
 }
 
 html[data-theme="dark"] .gallery-group-title .veh-name { color: #F0F2F5; }
-html[data-theme="dark"] .gallery-group-title .veh-seat { color: #9aa2ad; }
+html[data-theme="dark"] .gallery-group-title .veh-seat { color: #6EA8FE; }
 
 /* ==================== CTA BAND ==================== */
 .cta-band { background: #1a1a1a; color: #fff; text-align: center; }
@@ -302,7 +302,7 @@ html[data-theme="dark"] .rate-table tbody td { color: #d7dbe0; border-bottom-col
 html[data-theme="dark"] .rate-table tbody tr:nth-child(even) { background: #1A1D23; }
 html[data-theme="dark"] .rate-table tbody tr:hover { background: #2B303A; }
 html[data-theme="dark"] .rate-table .veh-name { color: #F0F2F5; }
-html[data-theme="dark"] .rate-table .veh-seat { color: #9aa2ad; }
+html[data-theme="dark"] .rate-table .veh-seat { color: #6EA8FE; }
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 860px) {
