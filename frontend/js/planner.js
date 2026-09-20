@@ -88,7 +88,7 @@
         </fieldset>
 
         <div class="planner-grid trip-contact">
-          ${field('tpVehicle', 'Vehicle type', `<select id="tpVehicle" name="vehicleType"><option value="">Any / Not sure</option>${options(VEHICLE_TYPES)}</select>`, { full: true })}
+          ${field('tpVehicle', 'Vehicle type', `<select id="tpVehicle" name="vehicleType">${options(VEHICLE_TYPES)}</select>`, { full: true })}
           ${field('tpTravellers', 'Travellers', `<input id="tpTravellers" name="travellers" type="number" min="1" max="500" placeholder="Number of people">`)}
           ${field('tpName', 'Your name', `<input id="tpName" name="name" type="text" placeholder="Enter your name" maxlength="100">`)}
           ${field('tpPhone', 'Phone number', `<input id="tpPhone" name="phone" type="tel" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>`, { full: true })}
