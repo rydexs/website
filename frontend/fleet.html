@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fleet — RYDEXS</title>
+<title>Fleet | RYDEXS</title>
 <meta name="description" content="Explore the RYDEXS fleet: premium sedans, SUVs and vans for airport transfers, corporate travel, events and private journeys.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
 </div>
 
 <div class="fleet-grid" id="fleet-grid"></div>
-<p class="empty-state container" id="emptyState">No vehicles in this category yet — check back soon or contact us for current availability.</p>
+<p class="empty-state container" id="emptyState">No vehicles in this category yet. Check back soon or contact us for current availability.</p>
 
 <div style="height:2rem"></div>
 
@@ -47,7 +47,7 @@
     <div class="showcase-info">
       <span class="showcase-eyebrow">Luxury Sedan</span>
       <h3>Mercedes-Benz S-Class</h3>
-      <p>Our flagship chauffeur car for executive travel, airport transfers and occasions that call for something exceptional — with a serene cabin built for focus or rest.</p>
+      <p>Our flagship chauffeur car for executive travel, airport transfers and occasions that call for something exceptional, with a serene cabin built for focus or rest.</p>
       <ul class="showcase-list">
         <li>Flagship luxury interior</li>
         <li>Professional chauffeur</li>
@@ -231,15 +231,15 @@
 <script>RYDEXS.footer();</script>
 <script>
 (function () {
-  // ----- Fleet data (rates from Book My Cabs — Car Segment) -----
+  // ----- Fleet data (rates from Book My Cabs, Car Segment) -----
   // rate = 8 Hrs / 80 Kms package. extraHr, extraKm and bata (driver allowance) are per-unit.
   const fleetVehicles = [
-    { category: "van", label: "Luxury Van", name: "Force Urbania", description: "Spacious, European-styled luxury van with a smooth ride and premium captain seating — ideal for group holidays and corporate travel.", seating: "12+1", seats: 12, rate: 7500, extraHr: 400, extraKm: 40, bata: 700, img: "images/rydexs-urbania.jpg" },
+    { category: "van", label: "Luxury Van", name: "Force Urbania", description: "Spacious, European-styled luxury van with a smooth ride and premium captain seating, ideal for group holidays and corporate travel.", seating: "12+1", seats: 12, rate: 7500, extraHr: 400, extraKm: 40, bata: 700, img: "images/rydexs-urbania.jpg" },
     { category: "van", label: "Coach Van", name: "Toyota Commuter", description: "A high-roof coach van for large groups, events and outstation logistics, with room for everyone and their luggage.", seating: "13+1", seats: 13, rate: 12000, extraHr: 1200, extraKm: 120, bata: 1000, img: "images/fleet/rydexs-toyota-commuter.jpg" },
-    { category: "van", label: "Group Van", name: "Tempo Traveller", description: "Spacious, high-roof group van with wide push-back seating and generous headroom — the go-to choice for group tours, offsites and outstation trips.", seating: "12+1", seats: 12, rate: 4500, extraHr: 500, extraKm: 20, bata: 500, img: "images/rydexs-tempo-traveller.jpg" },
+    { category: "van", label: "Group Van", name: "Tempo Traveller", description: "Spacious, high-roof group van with wide push-back seating and generous headroom, the go-to choice for group tours, offsites and outstation trips.", seating: "12+1", seats: 12, rate: 4500, extraHr: 500, extraKm: 20, bata: 500, img: "images/rydexs-tempo-traveller.jpg" },
     { category: "luxury", label: "Luxury Sedan", name: "Mercedes-Benz S-Class", description: "Our flagship ride, reserved for occasions that call for something exceptional in comfort and presence.", seating: "4+1", seats: 4, rate: 18000, extraHr: 1800, extraKm: 180, bata: 800, img: "images/fleet/rydexs-mercedes-benz-s-class.jpg" },
     { category: "luxury", label: "Luxury Sedan", name: "Mercedes-Benz E-Class", description: "A luxury chauffeur sedan for executives, with a serene cabin built for focus, rest or meetings on the move.", seating: "4+1", seats: 4, rate: 9500, extraHr: 950, extraKm: 95, bata: 800, img: "images/fleet/rydexs-mercedes-benz-e-class.jpg" },
-    { category: "premium", label: "Premium SUV", name: "Kia Carnival", description: "A luxury lounge on wheels — reclining captain seats and limousine-grade space for VIP group travel.", seating: "7+1", seats: 7, rate: 7500, extraHr: 750, extraKm: 75, bata: 500, img: "images/fleet/rydexs-kia-carnival.jpg" },
+    { category: "premium", label: "Premium SUV", name: "Kia Carnival", description: "A luxury lounge on wheels, with reclining captain seats and limousine-grade space for VIP group travel.", seating: "7+1", seats: 7, rate: 7500, extraHr: 750, extraKm: 75, bata: 500, img: "images/fleet/rydexs-kia-carnival.jpg" },
     { category: "suv", label: "SUV", name: "Toyota Fortuner", description: "A commanding full-size SUV suited to longer routes, mixed terrain and a confident arrival.", seating: "7+1", seats: 7, rate: 5500, extraHr: 500, extraKm: 50, bata: 400, img: "images/fleet/rydexs-toyota-fortuner.jpg" },
     { category: "suv", label: "Premium MPV", name: "Toyota Innova Hycross", description: "A modern, premium people-mover with a hushed ride and generous room for passengers and bags.", seating: "6+1 / 7+1", seats: 7, rate: 3400, extraHr: 350, extraKm: 23, bata: 400, img: "images/fleet/rydexs-toyota-innova-hycross.jpg" },
     { category: "suv", label: "Premium MPV", name: "Toyota Innova Crysta", description: "The dependable choice for group and outstation travel, with a spacious, cushioned cabin.", seating: "6+1 / 7+1", seats: 7, rate: 3100, extraHr: 250, extraKm: 18, bata: 300, img: "images/fleet/rydexs-toyota-innova-crysta.jpg" },

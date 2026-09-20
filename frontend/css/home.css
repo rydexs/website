@@ -87,8 +87,9 @@ html[data-theme="dark"] .fleet-specs,
 html[data-theme="dark"] .fleet-specs span,
 html[data-theme="dark"] .veh-name,
 html[data-theme="dark"] .rate-table,
-html[data-theme="dark"] .rate-table td,
-html[data-theme="dark"] .journey-link { color: #F0F2F5; }
+html[data-theme="dark"] .rate-table td { color: #F0F2F5; }
+
+html[data-theme="dark"] .journey-link { color: #ffffff; }
 
 /* Small eyebrow labels/tabs keep the brand yellow so they stay visible */
 html[data-theme="dark"] .section-label { color: var(--yellow, #F5B301); }
@@ -1164,14 +1165,18 @@ section.light-bg {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #050505;
+  color: #ffffff;
+  background: #25D366;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .journey-link:hover {
-  color: #F5B301;
+  background: #1eb959;
+  color: #ffffff;
   gap: 1rem;
 }
 

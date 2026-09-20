@@ -126,6 +126,9 @@
   </footer>
 
   <div class="fab-stack">
+    <a href="${PLAN_URL}" class="fab fab-book" title="Quick Book" aria-label="Quick book your trip">
+      <span class="fab-label">Quick Book</span>
+    </a>
     <button type="button" class="fab fab-assistant" id="assistOpen" title="Trip Assistant" aria-label="Open trip assistant">
       <span class="fab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="13" width="4" height="7" rx="1.5"/><rect x="18" y="13" width="4" height="7" rx="1.5"/><path d="M20 18v1a3 3 0 0 1-3 3h-3"/></svg></span>
       <span class="fab-label">Trip Assistant</span>

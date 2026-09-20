@@ -297,8 +297,8 @@ button:focus-visible {
   display: inline-block;
   margin-top: .9rem;
   text-align: center;
-  background: var(--yellow);
-  color: var(--dark);
+  background: var(--whatsapp);
+  color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: .85rem;
@@ -307,7 +307,7 @@ button:focus-visible {
   transition: background .25s ease, transform .25s ease;
 }
 
-.fleet-book:hover { background: var(--yellow-hover); transform: translateY(-2px); }
+.fleet-book:hover { background: #1eb959; transform: translateY(-2px); }
 
 .fleet-content {
   position: relative;

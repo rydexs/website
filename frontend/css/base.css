@@ -528,6 +528,20 @@ footer {
   padding-right: 1.4rem;
 }
 
+.fab-book {
+  background: #2D6CDF;
+  color: #ffffff;
+  height: 44px;
+  padding: 0 1.15rem;
+}
+
+.fab-book .fab-label {
+  max-width: none;
+  opacity: 1;
+  padding-right: 0;
+  font-size: 0.85rem;
+}
+
 .fab-assistant {
   background: #F5B301;
   color: #1a1a1a;

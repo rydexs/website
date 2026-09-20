@@ -9,7 +9,7 @@
   const DESTINATIONS = ['Coorg', 'Chikkamagaluru', 'Ooty', 'Mysuru', 'Gokarna', 'Goa', 'Kerala', 'Hampi', 'Wayanad',
     'Pondicherry', 'Tirupati', 'Chennai', 'Hyderabad', 'Kodaikanal', 'Munnar', 'Dharmasthala', 'Murudeshwar'];
   const PACKAGES = ['4 Hr / 40 Km', '8 Hr / 80 Km', '12 Hr / 120 Km'];
-  const VEHICLE_TYPES = ['Urbania', 'Sedan', 'SUVs & MPVs', 'Premium', 'Luxury', 'Vans'];
+  const VEHICLE_TYPES = ['Urbania', 'Tempo Traveller', 'Sedan', 'SUVs & MPVs', 'Premium', 'Luxury'];
   const AIRPORTS = [
     'Kempegowda International Airport, Bengaluru (BLR)',
     'Mysuru Airport (MYQ)',
