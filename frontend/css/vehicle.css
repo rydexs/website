@@ -78,14 +78,14 @@ h1.section-label { font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: #d99a00; }
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: urbaniaSlideshow 36s infinite;
+  animation: urbaniaSlideshow 34s infinite;
 }
 
 @keyframes urbaniaSlideshow {
   0% { opacity: 0; }
-  0.8% { opacity: 1; }
-  4.7% { opacity: 1; }
-  5.6% { opacity: 0; }
+  0.9% { opacity: 1; }
+  5.0% { opacity: 1; }
+  5.9% { opacity: 0; }
   100% { opacity: 0; }
 }
 
