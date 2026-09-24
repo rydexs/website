@@ -130,7 +130,7 @@ html:not([data-theme="dark"]) nav#navbar.nav-on-page:not(.scrolled):not(.menu-op
 }
 
 .logo {
-  height: 72px;
+  height: 58px;
   width: auto;
   display: flex;
   align-items: center;
@@ -292,7 +292,7 @@ footer {
 }
 
 .footer-logo {
-  height: 72px;
+  height: 58px;
   width: auto;
   display: block;
   margin: 0 0 1rem 0;
@@ -442,7 +442,7 @@ footer {
     display: none;
   }
   .logo {
-    height: 72px;
+    height: 58px;
   }
   .nav-menu-cta {
     display: block;
@@ -462,6 +462,11 @@ footer {
   .footer-social {
     order: -1;
   }
+  /* Keep the footer logo's left edge lined up with the nav logo above it */
+  footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -469,7 +474,11 @@ footer {
     padding: 0.8rem;
   }
   .logo {
-    height: 72px;
+    height: 58px;
+  }
+  footer {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
   }
 }
 
