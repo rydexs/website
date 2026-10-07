@@ -10,8 +10,9 @@
   const EMAIL = 'support@rydexs.in';
   const WHATSAPP = 'https://wa.me/91' + PHONE;
   const LOGO = 'a_clean_high_contrast_modern_vector_logo_style_g.png';
-  const ADDRESS = '#126, 8th Cross, Telecom Layout, HRBR Layout 5th Block, Nagavara, Bangalore 560043';
-  const MAP_EMBED_SRC = 'https://www.google.com/maps?q=' + encodeURIComponent(ADDRESS) + '&output=embed';
+  const ADDRESS = '8th Cross Road, Telecom Layout 10th Block, HBR Layout 5th Block, Hennur, Bengaluru 560045';
+  const MAP_COORDS = '13.0419483,77.6306923';
+  const MAP_EMBED_SRC = 'https://www.google.com/maps?q=' + MAP_COORDS + '&output=embed';
 
   // Warm up the connection to Google's map domains now, so that whenever the
   // footer map actually loads (see loadFooterMap below), it isn't also paying
